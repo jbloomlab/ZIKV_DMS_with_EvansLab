@@ -1,5 +1,14 @@
-results
 .*
 !.gitignore
 slurm*
 *.sbatch
+
+results/*
+
+!results/codoncounts
+results/codoncounts/*
+!results/codoncounts/*codoncounts.csv
+
+!results/prefs
+results/prefs/*
+!results/prefs/*prefs.csv
