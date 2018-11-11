@@ -13,6 +13,6 @@ These data consist of:
 
  - [./data/E.fasta](data/E.fasta): coding sequence of E protein from ZIKV MR766 strain.
 
- - [./data/samplelist.csv](data/samplelist.csv): all the samples that we sequenced and the locations of the associated deep-sequencing data.
+ - [./data/samplelist.csv](data/samplelist.csv): all the samples that we sequenced and the locations of the associated deep-sequencing data. Although we have technical replicates for the antibody selections for each library, we group these and just analyze variation at the level of biological replicates.
 
  - [./data/subamplicon_alignspecs.txt](./data/subamplicon_alignspecs.txt): the alignment specs for the [barcoded subamplicon sequencing](https://jbloomlab.github.io/dms_tools2/bcsubamp.html).
