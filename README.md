@@ -3,6 +3,9 @@ Deep mutational scanning of Zika virus E protein.
 Experiments performed by the [Matt Evans lab](http://labs.icahn.mssm.edu/evanslab/).
 Sequencing and computational analyses performed by Danny Lawrence and Jesse Bloom in the [Bloom lab](https://research.fhcrc.org/bloom/en.html).
 
+## Quick summary
+Look at the Jupyter notebook [analysis_notebook.ipynb](analysis_notebook.ipynb).
+
 ## Analysis and results
 The analysis is performed by the Jupyter notebook [analysis_notebook.ipynb](analysis_notebook.ipynb) using [dms_tools2](https://jbloomlab.github.io/dms_tools2/).
 That notebook also contains plots and descriptions of the results.
@@ -13,9 +16,13 @@ Specifically:
 
   - [./results/codoncounts/](results/codoncounts) contains files that give the counts of each codon mutation for each sample from the [barcoded subamplicon sequencing](https://jbloomlab.github.io/dms_tools2/bcsubamp.html).
 
-  - [./results/prefs/](results/prefs) contains files that give the [amino-acid preferences](https://jbloomlab.github.io/dms_tools2/prefs.html) for each library. These include the preferences for each library, as well as the across-library un-scaled preferences ([./results/prefs/unscaled_prefs.csv](results/prefs/unscaled_prefs.csv)) and the re-scaled preferences ([./results/prefs/unscaled_prefs.csv](results/prefs/unscaled_prefs.csv)). For most purposes, this last file is the one you want.
+  - [./results/prefs/](results/prefs) has the [amino-acid preferences](https://jbloomlab.github.io/dms_tools2/prefs.html) for each library, as well as the across-library un-scaled preferences ([./results/prefs/unscaled_prefs.csv](results/prefs/unscaled_prefs.csv)) and the re-scaled preferences ([./results/prefs/unscaled_prefs.csv](results/prefs/unscaled_prefs.csv)). For most purposes, this last file is the one you want.
 
-  - [./results/logoplots](results/logoplots) contains logo plots visualizing the amino-acid preferences.
+  - [./results/diffsel/](results/diffsel) has the [differential selection](https://jbloomlab.github.io/dms_tools2/diffsel.html) for each library, as well as the across-library average mutation differential selection ([./results/diffsel/summary_ZKA64-meanmutdiffsel.csv](results/diffsel/summary_ZKA64-meanmutdiffsel.csv) for ZKA185 and [./results/diffsel/summary_ZKA185-meanmutdiffsel.csv](results/diffsel/summary_ZKA185-meanmutdiffsel.csv) for ZKA185).
+
+  - [./results/fracsurvive/](results/fracsurvive) has the excess (above-average) [fraction surviving](https://jbloomlab.github.io/dms_tools2/fracsurvive.html) for each library, as well as the across-library excess fraction surviving ([./results/diffsel/summary_ZKA64-meanmutfracsurvive.csv](results/diffsel/summary_ZKA64-meanmutfracsurvive.csv) for ZKA185 and [./results/diffsel/summary_ZKA185-meanmutfracsurvive.csv](results/diffsel/summary_ZKA185-meanmutfracsurvive.csv) for ZKA185).
+
+  - [./results/logoplots](results/logoplots) contains logo plots visualizing the amino-acid preferences, differential selection, and excess fraction surviving.
 
 ## Input data
 The input data are in the [./data/](data) subdirectory. 
