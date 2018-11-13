@@ -1,7 +1,7 @@
 # Zika virus E protein deep mutational scanning
 Deep mutational scanning of Zika virus E protein.
 Experiments performed by the [Matt Evans lab](http://labs.icahn.mssm.edu/evanslab/).
-Sequencing and computational analyses performed by the [Bloom lab](https://research.fhcrc.org/bloom/en.html).
+Sequencing and computational analyses performed by Danny Lawrence and Jesse Bloom in the [Bloom lab](https://research.fhcrc.org/bloom/en.html).
 
 ## Analysis and results
 The analysis is performed by the Jupyter notebook [analysis_notebook.ipynb](analysis_notebook.ipynb) using [dms_tools2](https://jbloomlab.github.io/dms_tools2/).
@@ -13,7 +13,9 @@ Specifically:
 
   - [./results/codoncounts/](results/codoncounts) contains files that give the counts of each codon mutation for each sample from the [barcoded subamplicon sequencing](https://jbloomlab.github.io/dms_tools2/bcsubamp.html).
 
-  - [./results/prefs/](results/prefs) contains files that give the [amino-acid preferences](https://jbloomlab.github.io/dms_tools2/prefs.html) for each library.
+  - [./results/prefs/](results/prefs) contains files that give the [amino-acid preferences](https://jbloomlab.github.io/dms_tools2/prefs.html) for each library. These include the preferences for each library, as well as the across-library un-scaled preferences ([./results/prefs/unscaled_prefs.csv](results/prefs/unscaled_prefs.csv)) and the re-scaled preferences ([./results/prefs/unscaled_prefs.csv](results/prefs/unscaled_prefs.csv)). For most purposes, this last file is the one you want.
+
+  - [./results/logoplots](results/logoplots) contains logo plots visualizing the amino-acid preferences.
 
 ## Input data
 The input data are in the [./data/](data) subdirectory. 
@@ -24,3 +26,5 @@ These data consist of:
  - [./data/samplelist.csv](data/samplelist.csv): all the samples that we sequenced and the locations of the associated deep-sequencing data. Although we have technical replicates for the antibody selections for each library, we group these and just analyze variation at the level of biological replicates.
 
  - [./data/subamplicon_alignspecs.txt](./data/subamplicon_alignspecs.txt): the alignment specs for the [barcoded subamplicon sequencing](https://jbloomlab.github.io/dms_tools2/bcsubamp.html).
+
+ - [./data/E_alignment.fasta](data/E_alignment.fasta): alignment of ZIKV E protein created by Danny Lawrence. Downloaded from Genbank all ZIKV sequences (2018-05-11), removed sequences that were incomplete or ambiguous in E as well as sequences from an unnatural origin (patent or synthetic construct). Finally, used [phydms_prepalignment](http://jbloomlab.github.io/phydms/phydms_prepalignment.html) to remove sequences that were redundant at the protein level.

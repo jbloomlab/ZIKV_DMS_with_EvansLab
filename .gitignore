@@ -12,3 +12,11 @@ results/codoncounts/*
 !results/prefs
 results/prefs/*
 !results/prefs/*prefs.csv
+
+!results/phylogenetics
+results/phylogenetics/*
+!results/prefs/phydms_modelcomparison.md
+
+!results/logoplots
+results/logoplots/*
+!results/logoplots/*.pdf
