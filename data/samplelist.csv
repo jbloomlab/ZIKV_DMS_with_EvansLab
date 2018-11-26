@@ -1,8 +1,8 @@
 ﻿library,selection,antibody,percent_infectivity,R1
-Lib1,plasmid,none,NaN,/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180427_SN367_1155_BHHJMKBCX2/Unaligned/Project_bloom_lab/Sample_DNA_L1/*R1*.fastq.gz
-Lib2,plasmid,none,NaN,/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180427_SN367_1155_BHHJMKBCX2/Unaligned/Project_bloom_lab/Sample_DNA_L2/*R1*.fastq.gz
-Lib3,plasmid,none,NaN,/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180427_SN367_1155_BHHJMKBCX2/Unaligned/Project_bloom_lab/Sample_DNA_L3/*R1*.fastq.gz
-wildtype,plasmid,none,NaN,/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180427_SN367_1155_BHHJMKBCX2/Unaligned/Project_bloom_lab/Sample_DNA_WT/*R1*.fastq.gz
+Lib1,plasmid,none,NaN,/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/170609_SN367_0933_BHMLH5BCXY_lane2/Unaligned/Project_bloom_lab/Sample_zikv-1/*R1*.fastq.gz
+Lib2,plasmid,none,NaN,/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/170609_SN367_0933_BHMLH5BCXY_lane2/Unaligned/Project_bloom_lab/Sample_zikv-2/*R1*.fastq.gz
+Lib3,plasmid,none,NaN,/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/170609_SN367_0933_BHMLH5BCXY_lane2/Unaligned/Project_bloom_lab/Sample_zikv-3/*R1*.fastq.gz
+wildtype,plasmid,none,NaN,/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/170609_SN367_0933_BHMLH5BCXY_lane2/Unaligned/Project_bloom_lab/Sample_zikv-wt/*R1*.fastq.gz
 Lib1,virus,none,NaN,/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180427_SN367_1155_BHHJMKBCX2/Unaligned/Project_bloom_lab/Sample_zikv_L1/*R1*.fastq.gz
 Lib2,virus,none,NaN,/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180427_SN367_1155_BHHJMKBCX2/Unaligned/Project_bloom_lab/Sample_zikv_L2/*R1*.fastq.gz
 Lib3,virus,none,NaN,/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180427_SN367_1155_BHHJMKBCX2/Unaligned/Project_bloom_lab/Sample_zikv_L3/*R1*.fastq.gz
