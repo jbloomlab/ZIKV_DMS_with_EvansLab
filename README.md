@@ -18,6 +18,8 @@ Specifically:
 
   - [./results/prefs/](results/prefs) has the [amino-acid preferences](https://jbloomlab.github.io/dms_tools2/prefs.html) for each library, as well as the across-library un-scaled preferences ([./results/prefs/unscaled_prefs.csv](results/prefs/unscaled_prefs.csv)) and the re-scaled preferences ([./results/prefs/unscaled_prefs.csv](results/prefs/unscaled_prefs.csv)). For most purposes, this last file is the one you want.
 
+  - [./results/muteffects](results/muteffects) has the mutational effects calculated from the amino-acid preferences.
+
   - [./results/diffsel/](results/diffsel) has the [differential selection](https://jbloomlab.github.io/dms_tools2/diffsel.html) for each library, as well as the across-library average mutation differential selection ([./results/diffsel/summary_ZKA64-meanmutdiffsel.csv](results/diffsel/summary_ZKA64-meanmutdiffsel.csv) for ZKA185 and [./results/diffsel/summary_ZKA185-meanmutdiffsel.csv](results/diffsel/summary_ZKA185-meanmutdiffsel.csv) for ZKA185).
 
   - [./results/fracsurvive/](results/fracsurvive) has the excess (above-average) [fraction surviving](https://jbloomlab.github.io/dms_tools2/fracsurvive.html) for each library, as well as the across-library excess fraction surviving ([./results/diffsel/summary_ZKA64-meanmutfracsurvive.csv](results/diffsel/summary_ZKA64-meanmutfracsurvive.csv) for ZKA185 and [./results/diffsel/summary_ZKA185-meanmutfracsurvive.csv](results/diffsel/summary_ZKA185-meanmutfracsurvive.csv) for ZKA185).

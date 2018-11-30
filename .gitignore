@@ -17,6 +17,14 @@ results/prefs/*
 results/muteffects/*
 !results/muteffects/*muteffects.csv
 
+!results/fracsurvive
+results/fracsurvive/*
+!results/fracsurvive/*fracsurvive.csv
+
+!results/diffsel
+results/diffsel/*
+!results/diffsel/*diffsel.csv
+
 !results/phylogenetics
 results/phylogenetics/*
 !results/prefs/phydms_modelcomparison.md
