@@ -13,6 +13,10 @@ results/codoncounts/*
 results/prefs/*
 !results/prefs/*prefs.csv
 
+!results/muteffects
+results/muteffects/*
+!results/muteffects/*muteffects.csv
+
 !results/phylogenetics
 results/phylogenetics/*
 !results/prefs/phydms_modelcomparison.md
