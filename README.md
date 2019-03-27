@@ -4,7 +4,16 @@ Experiments performed by the [Matt Evans lab](http://labs.icahn.mssm.edu/evansla
 Sequencing and computational analyses performed by Danny Lawrence and Jesse Bloom in the [Bloom lab](https://research.fhcrc.org/bloom/en.html).
 
 ## Quick summary
-Look at the Jupyter notebook [analysis_notebook.ipynb](analysis_notebook.ipynb).
+Look at the Jupyter notebook [analysis_notebook.ipynb](analysis_notebook.ipynb), or its markdown output at [results/summary/analysis_notebook.md](results/summary/analysis_notebook.md).
+
+## Running the notebook
+You can run the notebook with the [run_nb.bash](run_nb.bash):
+
+    bash run_nb.bash
+
+Or to submit it to the server:
+
+    sbatch -c 16 -p largenode --mem=150000 run_nb.bash
 
 ## Analysis and results
 The analysis is performed by the Jupyter notebook [analysis_notebook.ipynb](analysis_notebook.ipynb) using [dms_tools2](https://jbloomlab.github.io/dms_tools2/).
