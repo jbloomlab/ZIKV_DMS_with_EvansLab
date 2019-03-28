@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # name of analysis notebook
-NB="analysis_nb.ipynb"
+NB="analysis_notebook.ipynb"
 
 # execute the analysis notebook
 jupyter nbconvert \
@@ -12,7 +12,8 @@ jupyter nbconvert \
     $NB
 
 # create markdown notebook output in `results/summary/`
-SUMMARYDIR="$RESULTSDIR/summary"
+RESULTSDIR="results/"
+SUMMARYDIR="$RESULTSDIR/summary/"
 mkdir -p $SUMMARYDIR
 jupyter nbconvert \
     --to markdown \

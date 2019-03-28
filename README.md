@@ -36,7 +36,7 @@ Specifically:
   - [./results/logoplots](results/logoplots) contains logo plots visualizing the amino-acid preferences, differential selection, and excess fraction surviving.
 
 ## Input data
-The input data are in the [./data/](data) subdirectory. 
+The input data are in the [./data/](data) subdirectory.
 These data consist of:
 
  - [./data/E.fasta](data/E.fasta): coding sequence of E protein from ZIKV MR766 strain.
@@ -45,4 +45,4 @@ These data consist of:
 
  - [./data/subamplicon_alignspecs.txt](./data/subamplicon_alignspecs.txt): the alignment specs for the [barcoded subamplicon sequencing](https://jbloomlab.github.io/dms_tools2/bcsubamp.html).
 
- - [./data/E_alignment.fasta](data/E_alignment.fasta): alignment of ZIKV E protein created by Danny Lawrence. Downloaded from Genbank all ZIKV sequences (2018-05-11), removed sequences that were incomplete or ambiguous in E as well as sequences from an unnatural origin (patent or synthetic construct). Finally, used [phydms_prepalignment](http://jbloomlab.github.io/phydms/phydms_prepalignment.html) to remove sequences that were redundant at the protein level.
+ - [./data/E_alignment.fasta](data/E_alignment.fasta): alignment of ZIKV E protein created by Danny Lawrence. Downloaded from NCBI Virus Variation Resource all ZIKV sequences (2019-03-26), removed sequences that were incomplete or ambiguous in E as well as sequences from an unnatural origin (patent or synthetic construct). Finally, used [`phydms_prepalignment`](http://jbloomlab.github.io/phydms/phydms_prepalignment.html) to remove sequences that were redundant at the protein level.
