@@ -25,7 +25,7 @@ Specifically:
 
   - [./results/codoncounts/](results/codoncounts) contains files that give the counts of each codon mutation for each sample from the [barcoded subamplicon sequencing](https://jbloomlab.github.io/dms_tools2/bcsubamp.html).
 
-  - [./results/prefs/](results/prefs) has the [amino-acid preferences](https://jbloomlab.github.io/dms_tools2/prefs.html) for each library, as well as the across-library un-scaled preferences ([./results/prefs/unscaled_prefs.csv](results/prefs/unscaled_prefs.csv)) and the re-scaled preferences ([./results/prefs/unscaled_prefs.csv](results/prefs/unscaled_prefs.csv)). For most purposes, this last file is the one you want.
+  - [./results/prefs/](results/prefs) has the [amino-acid preferences](https://jbloomlab.github.io/dms_tools2/prefs.html) for each library, as well as the across-library un-scaled preferences ([./results/prefs/unscaled_prefs.csv](results/prefs/unscaled_prefs.csv)) and the re-scaled preferences ([./results/prefs/rescaled_prefs.csv](results/prefs/rescaled_prefs.csv)). For most purposes, this last file is the one you want.
 
   - [./results/muteffects](results/muteffects) has the mutational effects calculated from the amino-acid preferences.
 
