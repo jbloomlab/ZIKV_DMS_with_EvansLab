@@ -45,4 +45,13 @@ These data consist of:
 
  - [./data/subamplicon_alignspecs.txt](./data/subamplicon_alignspecs.txt): the alignment specs for the [barcoded subamplicon sequencing](https://jbloomlab.github.io/dms_tools2/bcsubamp.html).
 
- - [./data/E_alignment.fasta](data/E_alignment.fasta): alignment of ZIKV E protein created by Danny Lawrence. Downloaded from NCBI Virus Variation Resource all ZIKV sequences (2019-03-26), removed sequences that were incomplete or ambiguous in E as well as sequences from an unnatural origin (patent or synthetic construct). Finally, used [`phydms_prepalignment`](http://jbloomlab.github.io/phydms/phydms_prepalignment.html) to remove sequences that were redundant at the protein level.
+ - [./data/E_alignment.fasta](data/E_alignment.fasta): alignment of ZIKV E protein created by Danny Lawrence. Downloaded from [NCBI Virus Variation Resource](https://www.ncbi.nlm.nih.gov/genome/viruses/variation/Zika/) all ZIKV sequences (2019-03-26) with the query settings as follows:
+  - Sequence type: Protein
+  - Host: any
+  - Region/Country: any
+  - Genome region: E
+  - Isolation source: any
+  - Collapse identical sequences: checked ("Note: All groups of identical sequences in the dataset will be represented by the oldest sequence in the group.")
+
+
+ Added the E region of our WT sequence for [MR766](https://www.ncbi.nlm.nih.gov/nuccore/KX830961) as the reference sequence and used [`phydms_prepalignment`](http://jbloomlab.github.io/phydms/phydms_prepalignment.html) to trim the alignment and remove any sequences that are redundant or incomplete. A number of sequences appeared to be derived from an experiment and were removed manually. 
