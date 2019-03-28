@@ -32,3 +32,5 @@ results/phylogenetics/*
 !results/logoplots
 results/logoplots/*
 !results/logoplots/*.pdf
+
+!results/summary
