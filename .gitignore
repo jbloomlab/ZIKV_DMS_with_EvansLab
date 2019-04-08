@@ -34,3 +34,5 @@ results/logoplots/*
 !results/logoplots/*.pdf
 
 !results/summary
+
+sra_submission/*.tar
