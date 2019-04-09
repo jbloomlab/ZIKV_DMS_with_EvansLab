@@ -35,4 +35,4 @@ results/logoplots/*
 
 !results/summary
 
-sra_submission/*.tar
+sra_submission/ZIKV_tar
