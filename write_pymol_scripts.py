@@ -1,6 +1,6 @@
 '''Script modified by Danny Lawrence 2019 to write pymol scripts that will color structure 5IRE of ZIKV E protein. '''
 
-import pandas as pd
+import pandas as pd 
 from colour import Color
 import os
 import dms_tools2
@@ -12,10 +12,10 @@ pymoldir = './pymol_scripts/'
 if not os.path.isdir(pymoldir):
     os.mkdir(pymoldir)
 
-entropy_file = './results/prefs/rescaled_prefs_entropy.csv'
+entropy_file = './results/prefs/unscaled_prefs_entropy.csv'
 if not os.path.isfile(entropy_file):
     charlist = ['A','C','D','E','F','G','H','I','K','L','M','N','P','Q','R','S','T','V','W','Y']
-    prefs = pd.read_csv('./results/prefs/rescaled_prefs.csv')
+    prefs = pd.read_csv('./results/prefs/unscaled_prefs.csv')
     ent_prefs = dms_tools2.prefs.prefsEntropy(prefs, charlist)
     ent_prefs.to_csv(entropy_file)
 
