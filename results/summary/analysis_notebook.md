@@ -1,4 +1,7 @@
 
+<h1>Table of Contents<span class="tocSkip"></span></h1>
+<div class="toc"><ul class="toc-item"><li><span><a href="#Deep-mutational-scanning-of-ZIKV-E-protein" data-toc-modified-id="Deep-mutational-scanning-of-ZIKV-E-protein-1">Deep mutational scanning of ZIKV E protein</a></span><ul class="toc-item"><li><span><a href="#Set-up-for-analysis" data-toc-modified-id="Set-up-for-analysis-1.1">Set up for analysis</a></span></li><li><span><a href="#Process-deep-sequencing-data" data-toc-modified-id="Process-deep-sequencing-data-1.2">Process deep sequencing data</a></span></li><li><span><a href="#Amino-acid-preferences-under-functional-selection" data-toc-modified-id="Amino-acid-preferences-under-functional-selection-1.3">Amino-acid preferences under functional selection</a></span></li><li><span><a href="#Mutational-effects" data-toc-modified-id="Mutational-effects-1.4">Mutational effects</a></span></li><li><span><a href="#Phylogenetic-analyses-with-experimentally-informed-codon-models" data-toc-modified-id="Phylogenetic-analyses-with-experimentally-informed-codon-models-1.5">Phylogenetic analyses with experimentally informed codon models</a></span></li><li><span><a href="#Differential-selection" data-toc-modified-id="Differential-selection-1.6">Differential selection</a></span></li><li><span><a href="#Fraction-surviving" data-toc-modified-id="Fraction-surviving-1.7">Fraction surviving</a></span></li><li><span><a href="#Mutations-tested-by-Evans-lab" data-toc-modified-id="Mutations-tested-by-Evans-lab-1.8">Mutations tested by Evans lab</a></span></li><li><span><a href="#Choose-&quot;significant&quot;-antibody-escape-mutations-for-validation" data-toc-modified-id="Choose-&quot;significant&quot;-antibody-escape-mutations-for-validation-1.9">Choose "significant" antibody-escape mutations for validation</a></span></li><li><span><a href="#Figures-for-paper" data-toc-modified-id="Figures-for-paper-1.10">Figures for paper</a></span><ul class="toc-item"><li><span><a href="#Figures-about-library-and-selection" data-toc-modified-id="Figures-about-library-and-selection-1.10.1">Figures about library and selection</a></span></li><li><span><a href="#Logo-plots-of-mutational-effects-on-viral-growth" data-toc-modified-id="Logo-plots-of-mutational-effects-on-viral-growth-1.10.2">Logo plots of mutational effects on viral growth</a></span></li><li><span><a href="#Comparison-to-natural-evolution" data-toc-modified-id="Comparison-to-natural-evolution-1.10.3">Comparison to natural evolution</a></span></li></ul></li></ul></li></ul></div>
+
 # Deep mutational scanning of ZIKV E protein
 Deep mutational scanning of ZIKV E from the MR766 strain.
 Experiments performed by the [Matt Evans lab](http://labs.icahn.mssm.edu/evanslab/).
@@ -13,6 +16,7 @@ import glob
 import os
 import subprocess
 import collections
+import shutil
 import warnings
 
 warnings.simplefilter('ignore') # ignore warnings that clutter output
@@ -37,10 +41,14 @@ import dms_tools2.prefs
 from dms_tools2.ipython_utils import showPDF
 from dms_tools2.plot import COLOR_BLIND_PALETTE_GRAY as PALETTE
 print(f"Using dms_tools2 {dms_tools2.__version__}")
+
+import dmslogo
+print(f"Using dmslogo {dmslogo.__version__}")
 ```
 
     Using phydms 2.3.1
     Using dms_tools2 2.4.9
+    Using dmslogo 0.1.0
 
 
 Specify information about running analysis:
@@ -317,7 +325,7 @@ os.makedirs(countsdir, exist_ok=True)
 bcsubamp_batchfile = os.path.join(countsdir, 'batch.csv')
 samples[['name', 'R1']].to_csv(bcsubamp_batchfile, index=False)
 
-! dms2_batch_bcsubamp \
+log = ! dms2_batch_bcsubamp \
         --batchfile {bcsubamp_batchfile} \
         --refseq {refseqfile} \
         --alignspecs {alignspecs} \
@@ -337,95 +345,6 @@ assert all(map(os.path.isfile, samples.codoncounts))
 print(f"Processed sequencing data to create codon counts files in {countsdir}")
 ```
 
-    INFO:dms2_batch_bcsubamp:Beginning execution of dms2_batch_bcsubamp in directory /fh/fast/bloom_j/computational_notebooks/jbloom/2018/ZIKV_DMS_with_EvansLab
-    
-    INFO:dms2_batch_bcsubamp:Progress is being logged to ./results/codoncounts/summary.log
-    INFO:dms2_batch_bcsubamp:Version information:
-    	Time and date: Thu Apr 11 19:38:24 2019
-    	Platform: Linux-3.13.0-167-generic-x86_64-with-debian-jessie-sid
-    	Python version: 3.6.7 | packaged by conda-forge | (default, Nov 21 2018, 02:32:25)  [GCC 4.8.2 20140120 (Red Hat 4.8.2-15)]
-    	dms_tools2 version: 2.4.9
-    	Bio version: 1.72
-    	HTSeq version: 0.11.0
-    	pandas version: 0.24.2
-    	numpy version: 1.15.4
-    	IPython version: 7.2.0
-    	jupyter version: 1.0.0
-    	matplotlib version: 3.0.2
-    	plotnine version: 0.5.1
-    	natsort version: 5.5.0
-    	pystan version: 2.16.0.0
-    	scipy version: 1.1.0
-    	seaborn version: 0.9.0
-    	phydmslib version: 2.3.1
-    	statsmodels version: 0.9.0
-    	rpy2 version: 2.9.1
-    	regex version: 2.4.153
-    	umi_tools version: 1.0.0
-    
-    INFO:dms2_batch_bcsubamp:Parsed the following arguments:
-    	outdir = ./results/codoncounts
-    	ncpus = 16
-    	use_existing = yes
-    	refseq = ./data/E.fasta
-    	alignspecs = ['1,303,33,38', '304,609,38,40', '610,903,41,36', '904,1200,41,37', '1201,1512,36,35']
-    	bclen = 8
-    	fastqdir = ./results/FASTQ_files
-    	R2 = None
-    	R1trim = [200]
-    	R2trim = [200]
-    	bclen2 = None
-    	chartype = codon
-    	maxmuts = 4
-    	minq = 15
-    	minreads = 2
-    	minfraccall = 0.95
-    	minconcur = 0.75
-    	sitemask = None
-    	purgeread = 0
-    	purgebc = 0
-    	bcinfo = False
-    	batchfile = ./results/codoncounts/batch.csv
-    	summaryprefix = summary
-    
-    INFO:dms2_batch_bcsubamp:Parsing sample info from ./results/codoncounts/batch.csv
-    INFO:dms2_batch_bcsubamp:Read the following sample information:
-    name,R1
-    Lib1-plasmid,Lib1-plasmid_R1.fastq.gz
-    Lib2-plasmid,Lib2-plasmid_R1.fastq.gz
-    Lib3-plasmid,Lib3-plasmid_R1.fastq.gz
-    wildtype-plasmid,wildtype-plasmid_R1.fastq.gz
-    Lib1-virus,Lib1-virus_R1.fastq.gz
-    Lib2-virus,Lib2-virus_R1.fastq.gz
-    Lib3-virus,Lib3-virus_R1.fastq.gz
-    wildtype-virus,wildtype-virus_R1.fastq.gz
-    Lib1-no-antibody,Lib1-no-antibody_R1.fastq.gz
-    Lib2-no-antibody,Lib2-no-antibody_R1.fastq.gz
-    Lib3-no-antibody,Lib3-no-antibody_R1.fastq.gz
-    Lib1-control-antibody,Lib1-control-antibody_R1.fastq.gz
-    Lib2-control-antibody,Lib2-control-antibody_R1.fastq.gz
-    Lib3-control-antibody,Lib3-control-antibody_R1.fastq.gz
-    Lib1-ZKA64,Lib1-ZKA64_R1.fastq.gz
-    Lib2-ZKA64,Lib2-ZKA64_R1.fastq.gz
-    Lib3-ZKA64,Lib3-ZKA64_R1.fastq.gz
-    Lib1-ZKA185,Lib1-ZKA185_R1.fastq.gz
-    Lib2-ZKA185,Lib2-ZKA185_R1.fastq.gz
-    Lib3-ZKA185,Lib3-ZKA185_R1.fastq.gz
-    
-    
-    INFO:dms2_batch_bcsubamp:Running dms2_bcsubamp on all samples using 16 CPUs...
-    INFO:dms2_batch_bcsubamp:Completed runs of dms2_bcsubamp.
-    
-    INFO:dms2_batch_bcsubamp:Plotting read stats to ./results/codoncounts/summary_readstats.pdf
-    INFO:dms2_batch_bcsubamp:Plotting barcode stats to ./results/codoncounts/summary_bcstats.pdf
-    INFO:dms2_batch_bcsubamp:Plotting reads per barcode to ./results/codoncounts/summary_readsperbc.pdf
-    INFO:dms2_batch_bcsubamp:Plotting count depth to ./results/codoncounts/summary_depth.pdf
-    INFO:dms2_batch_bcsubamp:Plotting mutation frequencies to ./results/codoncounts/summary_mutfreq.pdf
-    INFO:dms2_batch_bcsubamp:Plotting average frequencies of codon mutation types to ./results/codoncounts/summary_codonmuttypes.pdf, writing the data to ./results/codoncounts/summary_codonmuttypes.csv
-    INFO:dms2_batch_bcsubamp:Plotting average frequencies of nucleotide changes per codon mutation to ./results/codoncounts/summary_codonntchanges.pdf
-    INFO:dms2_batch_bcsubamp:Plotting frequencies of nucleotide changes in 1-nucleotide mutations to ./results/codoncounts/summary_singlentchanges.pdf
-    INFO:dms2_batch_bcsubamp:Plotting fraction of mutations seen less than some number of times to ./results/codoncounts/summary_cumulmutcounts.pdf
-    INFO:dms2_batch_bcsubamp:Successful completion of dms2_batch_bcsubamp
     Processed sequencing data to create codon counts files in ./results/codoncounts
 
 
@@ -449,7 +368,7 @@ showPDF([bcsubamp_plot_prefix + 'readstats.pdf',
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_19_0.png)
+![png](analysis_notebook_files/analysis_notebook_20_0.png)
 
 
 Next we look at number of reads per barcode.
@@ -463,7 +382,7 @@ showPDF(bcsubamp_plot_prefix + 'readsperbc.pdf')
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_21_0.png)
+![png](analysis_notebook_files/analysis_notebook_22_0.png)
 
 
 Now we look at the depth across the gene.
@@ -476,7 +395,7 @@ showPDF(bcsubamp_plot_prefix + 'depth.pdf')
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_23_0.png)
+![png](analysis_notebook_files/analysis_notebook_24_0.png)
 
 
 Here are the mutation frequencies across the gene.
@@ -489,7 +408,7 @@ showPDF(bcsubamp_plot_prefix + 'mutfreq.pdf')
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_25_0.png)
+![png](analysis_notebook_files/analysis_notebook_26_0.png)
 
 
 We also see that as expected, we get strong selection against stop codons in all samples except the unselected input plasmid library:
@@ -500,7 +419,7 @@ showPDF(bcsubamp_plot_prefix + 'codonmuttypes.pdf')
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_27_0.png)
+![png](analysis_notebook_files/analysis_notebook_28_0.png)
 
 
 We have single and multi-nucleotide changes in the libraries, although the single nucleotide changes are perhaps over-represented:
@@ -511,7 +430,7 @@ showPDF(bcsubamp_plot_prefix + 'codonntchanges.pdf')
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_29_0.png)
+![png](analysis_notebook_files/analysis_notebook_30_0.png)
 
 
 Here are the frequencies of different types of mutations among single-nucleotide codon changes.
@@ -523,7 +442,7 @@ showPDF(bcsubamp_plot_prefix + 'singlentchanges.pdf')
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_31_0.png)
+![png](analysis_notebook_files/analysis_notebook_32_0.png)
 
 
 Finally, we look at mutation sampling.
@@ -535,7 +454,7 @@ showPDF(bcsubamp_plot_prefix + 'cumulmutcounts.pdf')
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_33_0.png)
+![png](analysis_notebook_files/analysis_notebook_34_0.png)
 
 
 ## Amino-acid preferences under functional selection
@@ -633,7 +552,7 @@ showPDF(os.path.join(prefsdir, 'summary_prefscorr.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_39_0.png)
+![png](analysis_notebook_files/analysis_notebook_40_0.png)
 
 
 Now we will make a logo plot of the average of the amino-acid preferences across the libraries.
@@ -663,7 +582,7 @@ log = ! dms2_logoplot \
         --prefs {unscaledprefsfile} \
         --name unscaled \
         --outdir {logodir} \
-        --nperline 72 \
+        --nperline 84 \
         --overlay1 {wtoverlayfile} wildtype wildtype \
         --use_existing {use_existing}
 
@@ -671,7 +590,7 @@ showPDF(os.path.join(logodir, 'unscaled_prefs.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_41_0.png)
+![png](analysis_notebook_files/analysis_notebook_42_0.png)
 
 
 ## Mutational effects
@@ -784,16 +703,16 @@ log = ! dms2_logoplot \
         --muteffects {muteffectsfile} \
         --name unscaled \
         --outdir {logodir} \
-        --nperline 72 \
+        --nperline 84 \
         --overlay1 {wtoverlayfile} wildtype wildtype \
-        --scalebar 8 "256-fold change" \
+        --scalebar 6.64 "100-fold change (log scale)" \
         --use_existing {use_existing}
 
 showPDF(os.path.join(logodir, 'unscaled_muteffects.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_51_0.png)
+![png](analysis_notebook_files/analysis_notebook_52_0.png)
 
 
 ## Phylogenetic analyses with experimentally informed codon models
@@ -817,7 +736,7 @@ alignment = list(Bio.SeqIO.parse(alignment_file, 'fasta'))
 print(f"There are {len(alignment)} sequences in {alignment_file}")
 ```
 
-    There are 83 sequences in ./data/E_alignment.fasta
+    There are 78 sequences in ./data/E_alignment.fasta
 
 
 Now we run [phydms](http://jbloomlab.github.io/phydms/) (using the [phydms_comprehensive](http://jbloomlab.github.io/phydms/phydms_comprehensive_prog.html) program) to fit ExpCM and standard codon models to these sequences:
@@ -839,22 +758,31 @@ if not os.path.isfile(modelcomparisonfile) or use_existing != 'yes':
 ```
 
 Let's visualize the phylogenetic tree.
-The topology will be the same for the tree under any model, so let's look at it under the ExpCM:
+The topology will be the same for the tree under any model, so let's look at it under the ExpCM.
+We label tips by accession and country / year of isolation:
 
 
 ```python
 treefile = os.path.join(phylodir, 'phydms_ExpCM_prefs_tree.newick')
+
 treefigfile = os.path.join(phylodir, 'tree.pdf')
 
 # read tree
 tree = Bio.Phylo.read(treefile, 'newick')
 tree.root_at_midpoint()
+    
+# rename tips
+for tip in tree.get_terminals():
+    acc = tip.name.split('_')[0].split('|')[0]
+    loc = tip.name.split('|')[1]
+    year = tip.name.split('|')[2].split('/')[0]
+    tip.name = f"{loc}/{year} ({acc})"
 
 # plot and format tree
 Bio.Phylo.draw(tree,
                do_show=False)
 treefig = plt.gcf()
-treefig.set_size_inches(25, 15)
+treefig.set_size_inches(20, 13)
 ax = treefig.axes[0]
 ax.axis('off')
 
@@ -866,7 +794,7 @@ yline = y0 - 0.05 * (y1 - y0)
 ytext = yline - 0.01 * (y1 - y0)
 ax.set_ylim(ytext, y1)
 plt.plot([xstart, xstart + barlen], [yline, yline], color='black', 
-          linestyle='-', linewidth=2)
+         linestyle='-', linewidth=2)
 plt.text(xstart + barlen / 2., ytext, 
          f'{barlen} codon substitutions / site',
          horizontalalignment='center',
@@ -882,7 +810,7 @@ showPDF(treefigfile)
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_59_0.png)
+![png](analysis_notebook_files/analysis_notebook_60_0.png)
 
 
 Now let's look at the result of the phylogenetic model comparison from the analysis.
@@ -925,9 +853,9 @@ display(HTML(modelcompare.to_html(index=False)))
     <tr>
       <td>ExpCM_prefs</td>
       <td>0.00</td>
-      <td>-4907.78</td>
+      <td>-4749.59</td>
       <td>6</td>
-      <td>1.64</td>
+      <td>1.65</td>
       <td>0.31</td>
       <td>NaN</td>
       <td>NaN</td>
@@ -935,19 +863,19 @@ display(HTML(modelcompare.to_html(index=False)))
     </tr>
     <tr>
       <td>YNGKP_M5</td>
-      <td>2057.02</td>
-      <td>-5930.29</td>
+      <td>2059.06</td>
+      <td>-5773.12</td>
       <td>12</td>
       <td>NaN</td>
       <td>NaN</td>
-      <td>0.090476</td>
-      <td>0.38</td>
-      <td>4.2</td>
+      <td>0.089806</td>
+      <td>0.37</td>
+      <td>4.12</td>
     </tr>
     <tr>
       <td>averaged_ExpCM_prefs</td>
-      <td>2068.36</td>
-      <td>-5941.96</td>
+      <td>2063.46</td>
+      <td>-5781.32</td>
       <td>6</td>
       <td>0.59</td>
       <td>0.09</td>
@@ -957,8 +885,8 @@ display(HTML(modelcompare.to_html(index=False)))
     </tr>
     <tr>
       <td>YNGKP_M0</td>
-      <td>2084.02</td>
-      <td>-5944.79</td>
+      <td>2081.02</td>
+      <td>-5785.10</td>
       <td>11</td>
       <td>NaN</td>
       <td>0.09</td>
@@ -980,7 +908,7 @@ stringency = float(modelcompare.set_index('Model')['stringency'].to_dict()['ExpC
 print(f"Stringency parameter is {stringency}")
 ```
 
-    Stringency parameter is 1.64
+    Stringency parameter is 1.65
 
 
 Re-scale the preferences by this stringency parameter, add information on wildtype amino acids, and write to a file:
@@ -1016,16 +944,16 @@ log = ! dms2_logoplot \
         --prefs {rescaledprefsfile} \
         --name rescaled \
         --outdir {logodir} \
-        --nperline 72 \
+        --nperline 84 \
         --overlay1 {wtoverlayfile} wildtype wildtype \
-        --use_existing {use_existing} \
-        --ignore_extracols yes
+        --ignore_extracols yes \
+        --use_existing {use_existing}
 
 showPDF(os.path.join(logodir, 'rescaled_prefs.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_67_0.png)
+![png](analysis_notebook_files/analysis_notebook_68_0.png)
 
 
 ## Differential selection
@@ -1297,19 +1225,19 @@ showPDF([os.path.join(diffseldir, f'summary_{antibody}-positivesitediffselcorr.p
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_79_0.png)
+![png](analysis_notebook_files/analysis_notebook_80_0.png)
 
 
-Now we look at the positive differential selection for each antibody, taking the average across the replicates.
+Now we look at the positive differential selection for each antibody, taking the median across the replicates.
 We see clear peaks of differentially selected sites for both antibodies, but no peaks for the control antibody:
 
 
 ```python
-showPDF(os.path.join(diffseldir, 'summary_meanpositivediffsel.pdf'))
+showPDF(os.path.join(diffseldir, 'summary_medianpositivediffsel.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_81_0.png)
+![png](analysis_notebook_files/analysis_notebook_82_0.png)
 
 
 We also look at the total differential selection, including **negative** differential selection.
@@ -1318,28 +1246,28 @@ Still, we plot it in case it actually indicates sites where mutations increase n
 
 
 ```python
-showPDF(os.path.join(diffseldir, 'summary_meantotaldiffsel.pdf'))
+showPDF(os.path.join(diffseldir, 'summary_mediantotaldiffsel.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_83_0.png)
+![png](analysis_notebook_files/analysis_notebook_84_0.png)
 
 
-Finally, we use [dms2_logoplot](https://jbloomlab.github.io/dms_tools2/dms2_logoplot.html) to make a logo plot of the across-replicate average **positive** (not use of `--restrictdiffsel positive`) differential selection for each non-control antibody:
+Finally, we use [dms2_logoplot](https://jbloomlab.github.io/dms_tools2/dms2_logoplot.html) to make a logo plot of the across-replicate median **positive** (note use of `--restrictdiffsel positive`) differential selection for each non-control antibody:
 
 
 ```python
 for antibody in diffsel_batch.query('group != "control-antibody"').group.unique():
     logoplot = os.path.join(logodir, f"{antibody}_diffsel.pdf")
     diffselfile = os.path.join(diffseldir,
-                               f'summary_{antibody}-meanmutdiffsel.csv')
+                               f'summary_{antibody}-medianmutdiffsel.csv')
     print(f"\n\nDiffsel for {antibody} (plot saved to {logoplot}):")
     log = ! dms2_logoplot \
         --outdir {logodir} \
         --name {antibody} \
         --diffsel {diffselfile} \
         --restrictdiffsel positive \
-        --nperline 72 \
+        --nperline 84 \
         --overlay1 {wtoverlayfile} wildtype wildtype \
         --scalebar 10 "diffsel = 10" \
         --underlay yes \
@@ -1353,7 +1281,7 @@ for antibody in diffsel_batch.query('group != "control-antibody"').group.unique(
 
 
 
-![png](analysis_notebook_files/analysis_notebook_85_1.png)
+![png](analysis_notebook_files/analysis_notebook_86_1.png)
 
 
     
@@ -1362,7 +1290,7 @@ for antibody in diffsel_batch.query('group != "control-antibody"').group.unique(
 
 
 
-![png](analysis_notebook_files/analysis_notebook_85_3.png)
+![png](analysis_notebook_files/analysis_notebook_86_3.png)
 
 
 ## Fraction surviving
@@ -1405,34 +1333,34 @@ showPDF([os.path.join(fracsurvivedir, f'summary_{antibody}-avgfracsurvivecorr.pd
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_91_0.png)
+![png](analysis_notebook_files/analysis_notebook_92_0.png)
 
 
-Here is the average across replicates of each site's average fracsurvive:
+Here is the median across replicates of each site's average fracsurvive:
 
 
 ```python
-showPDF(os.path.join(fracsurvivedir, 'summary_meanavgfracsurvive.pdf'))
+showPDF(os.path.join(fracsurvivedir, 'summary_medianavgfracsurvive.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_93_0.png)
+![png](analysis_notebook_files/analysis_notebook_94_0.png)
 
 
-Finally, we use [dms2_logoplot](https://jbloomlab.github.io/dms_tools2/dms2_logoplot.html) to make a logo plot of the across-replicate fraction surviving for each non-control antibody:
+Finally, we use [dms2_logoplot](https://jbloomlab.github.io/dms_tools2/dms2_logoplot.html) to make a logo plot of the median across-replicate fraction surviving for each non-control antibody:
 
 
 ```python
 for antibody in diffsel_batch.query('group != "control-antibody"').group.unique():
     logoplot = os.path.join(logodir, f"{antibody}_fracsurvive.pdf")
     fracsurvivefile = os.path.join(fracsurvivedir,
-                               f'summary_{antibody}-meanmutfracsurvive.csv')
+                               f'summary_{antibody}-medianmutfracsurvive.csv')
     print(f"\n\nFracsurvive for {antibody} (plot saved to {logoplot}):")
     log = ! dms2_logoplot \
         --outdir {logodir} \
         --name {antibody} \
         --fracsurvive {fracsurvivefile} \
-        --nperline 72 \
+        --nperline 84 \
         --overlay1 {wtoverlayfile} wildtype wildtype \
         --scalebar 1 "fracsurvive = 1" \
         --underlay yes \
@@ -1446,7 +1374,7 @@ for antibody in diffsel_batch.query('group != "control-antibody"').group.unique(
 
 
 
-![png](analysis_notebook_files/analysis_notebook_95_1.png)
+![png](analysis_notebook_files/analysis_notebook_96_1.png)
 
 
     
@@ -1455,7 +1383,7 @@ for antibody in diffsel_batch.query('group != "control-antibody"').group.unique(
 
 
 
-![png](analysis_notebook_files/analysis_notebook_95_3.png)
+![png](analysis_notebook_files/analysis_notebook_96_3.png)
 
 
 The results for fraction surviving look mostly similar to those for differential selection, but there are some differences, and it is probably worth considering which metric seems to better capture the real biology.
@@ -1650,7 +1578,7 @@ for scaling, df in [('rescaled', rescaledprefs),
 
 
 
-![png](analysis_notebook_files/analysis_notebook_102_1.png)
+![png](analysis_notebook_files/analysis_notebook_103_1.png)
 
 
     
@@ -1659,7 +1587,7 @@ for scaling, df in [('rescaled', rescaledprefs),
 
 
 
-![png](analysis_notebook_files/analysis_notebook_102_3.png)
+![png](analysis_notebook_files/analysis_notebook_103_3.png)
 
 
 The logo plots above show the amino-acid preferences, although it is sometimes hard to see the relative effects of mutations with small preferences.
@@ -1703,7 +1631,7 @@ _ = (
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_106_0.png)
+![png](analysis_notebook_files/analysis_notebook_107_0.png)
 
 
 Now we get the effects of the experimentall characterized mutations:
@@ -1742,7 +1670,7 @@ display(HTML(tested_mutations.to_html()))
       <td>P</td>
       <td>192</td>
       <td>I</td>
-      <td>-8.330870</td>
+      <td>-8.381668</td>
     </tr>
     <tr>
       <th>1</th>
@@ -1751,7 +1679,7 @@ display(HTML(tested_mutations.to_html()))
       <td>C</td>
       <td>190</td>
       <td>S</td>
-      <td>-7.019585</td>
+      <td>-7.062388</td>
     </tr>
     <tr>
       <th>2</th>
@@ -1760,7 +1688,7 @@ display(HTML(tested_mutations.to_html()))
       <td>F</td>
       <td>285</td>
       <td>S</td>
-      <td>-4.564429</td>
+      <td>-4.592261</td>
     </tr>
     <tr>
       <th>3</th>
@@ -1769,7 +1697,7 @@ display(HTML(tested_mutations.to_html()))
       <td>T</td>
       <td>487</td>
       <td>M</td>
-      <td>-4.274109</td>
+      <td>-4.300170</td>
     </tr>
     <tr>
       <th>4</th>
@@ -1778,7 +1706,7 @@ display(HTML(tested_mutations.to_html()))
       <td>V</td>
       <td>437</td>
       <td>A</td>
-      <td>-3.786886</td>
+      <td>-3.809977</td>
     </tr>
     <tr>
       <th>5</th>
@@ -1787,7 +1715,7 @@ display(HTML(tested_mutations.to_html()))
       <td>V</td>
       <td>169</td>
       <td>L</td>
-      <td>-3.450994</td>
+      <td>-3.472037</td>
     </tr>
     <tr>
       <th>6</th>
@@ -1796,7 +1724,7 @@ display(HTML(tested_mutations.to_html()))
       <td>G</td>
       <td>29</td>
       <td>A</td>
-      <td>-0.219768</td>
+      <td>-0.221108</td>
     </tr>
     <tr>
       <th>7</th>
@@ -1805,7 +1733,7 @@ display(HTML(tested_mutations.to_html()))
       <td>G</td>
       <td>106</td>
       <td>A</td>
-      <td>-0.051242</td>
+      <td>-0.051554</td>
     </tr>
     <tr>
       <th>8</th>
@@ -1814,7 +1742,7 @@ display(HTML(tested_mutations.to_html()))
       <td>Q</td>
       <td>447</td>
       <td>C</td>
-      <td>1.802151</td>
+      <td>1.813139</td>
     </tr>
     <tr>
       <th>9</th>
@@ -1823,7 +1751,7 @@ display(HTML(tested_mutations.to_html()))
       <td>K</td>
       <td>443</td>
       <td>M</td>
-      <td>2.469765</td>
+      <td>2.484824</td>
     </tr>
     <tr>
       <th>10</th>
@@ -1832,7 +1760,7 @@ display(HTML(tested_mutations.to_html()))
       <td>G</td>
       <td>29</td>
       <td>L</td>
-      <td>2.782095</td>
+      <td>2.799059</td>
     </tr>
     <tr>
       <th>11</th>
@@ -1841,7 +1769,7 @@ display(HTML(tested_mutations.to_html()))
       <td>S</td>
       <td>403</td>
       <td>I</td>
-      <td>3.769809</td>
+      <td>3.792795</td>
     </tr>
     <tr>
       <th>12</th>
@@ -1850,7 +1778,7 @@ display(HTML(tested_mutations.to_html()))
       <td>P</td>
       <td>354</td>
       <td>R</td>
-      <td>4.484408</td>
+      <td>4.511751</td>
     </tr>
     <tr>
       <th>13</th>
@@ -1859,7 +1787,7 @@ display(HTML(tested_mutations.to_html()))
       <td>T</td>
       <td>194</td>
       <td>R</td>
-      <td>5.012599</td>
+      <td>5.043164</td>
     </tr>
   </tbody>
 </table>
@@ -1897,7 +1825,7 @@ _ = (
 
 
 
-![png](analysis_notebook_files/analysis_notebook_110_1.png)
+![png](analysis_notebook_files/analysis_notebook_111_1.png)
 
 
 The histogram above suggests that the correlation between the experiments and deep mutational scanning is OK. 
@@ -2184,7 +2112,7 @@ for antibody in antibodies:
 
 
 
-![png](analysis_notebook_files/analysis_notebook_123_1.png)
+![png](analysis_notebook_files/analysis_notebook_124_1.png)
 
 
     
@@ -2195,7 +2123,7 @@ for antibody in antibodies:
 
 
 
-![png](analysis_notebook_files/analysis_notebook_123_3.png)
+![png](analysis_notebook_files/analysis_notebook_124_3.png)
 
 
 Based on the above, I would suggest the following mutations to test:
@@ -2227,6 +2155,178 @@ If you only pick a subset so as not to have to test so many, I would suggest bei
  - D83P (should escape ZKA185) and D83A (should not escape ZKA185)
  - A69R (should escape ZKA185) and A69V (should not escape ZKA185)
 
+
+## Figures for paper
+Here we generate plots for paper figures.
+
+
+```python
+figsdir = os.path.join(resultsdir, 'figures')
+os.makedirs(figsdir, exist_ok=True)
+```
+
+### Figures about library and selection
+First, we want a plot that shows the sampling of mutations in the plasmid and virus libraries.
+We've already made a similar plot above but it also shows antibody selections; here make one that just shows plasmid and virus.
+First, get these samples and their codon counts files:
+
+
+```python
+plasmid_and_virus_samples = (
+    samples
+    .query('selection in ["plasmid", "virus"]')
+    [['name', 'library', 'selection']]
+    .assign(countsfile=lambda x: countsdir + '/' + x.name + '_codoncounts.csv',
+            name=lambda x: x['selection'] + ' ' + x['library'])
+    )
+
+display(HTML(plasmid_and_virus_samples.to_html(index=False)))
+```
+
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>name</th>
+      <th>library</th>
+      <th>selection</th>
+      <th>countsfile</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>plasmid Lib1</td>
+      <td>Lib1</td>
+      <td>plasmid</td>
+      <td>./results/codoncounts/Lib1-plasmid_codoncounts...</td>
+    </tr>
+    <tr>
+      <td>plasmid Lib2</td>
+      <td>Lib2</td>
+      <td>plasmid</td>
+      <td>./results/codoncounts/Lib2-plasmid_codoncounts...</td>
+    </tr>
+    <tr>
+      <td>plasmid Lib3</td>
+      <td>Lib3</td>
+      <td>plasmid</td>
+      <td>./results/codoncounts/Lib3-plasmid_codoncounts...</td>
+    </tr>
+    <tr>
+      <td>plasmid wildtype</td>
+      <td>wildtype</td>
+      <td>plasmid</td>
+      <td>./results/codoncounts/wildtype-plasmid_codonco...</td>
+    </tr>
+    <tr>
+      <td>virus Lib1</td>
+      <td>Lib1</td>
+      <td>virus</td>
+      <td>./results/codoncounts/Lib1-virus_codoncounts.csv</td>
+    </tr>
+    <tr>
+      <td>virus Lib2</td>
+      <td>Lib2</td>
+      <td>virus</td>
+      <td>./results/codoncounts/Lib2-virus_codoncounts.csv</td>
+    </tr>
+    <tr>
+      <td>virus Lib3</td>
+      <td>Lib3</td>
+      <td>virus</td>
+      <td>./results/codoncounts/Lib3-virus_codoncounts.csv</td>
+    </tr>
+    <tr>
+      <td>virus wildtype</td>
+      <td>wildtype</td>
+      <td>virus</td>
+      <td>./results/codoncounts/wildtype-virus_codoncoun...</td>
+    </tr>
+  </tbody>
+</table>
+
+
+Now make plot of mutation sampling, just for mutant (non-wildtype) samples:
+
+
+```python
+mutation_sampling = os.path.join(figsdir, 'mutation_sampling.pdf')
+
+dms_tools2.plot.plotCumulMutCounts(
+        names=plasmid_and_virus_samples.query('library != "wildtype"').name,
+        countsfiles=plasmid_and_virus_samples.query('library != "wildtype"').countsfile,
+        plotfile=mutation_sampling,
+        chartype='codon',
+        maxcol=3,
+        )
+
+showPDF(mutation_sampling)
+```
+
+
+![png](analysis_notebook_files/analysis_notebook_131_0.png)
+
+
+And a plot of selection on different types of mutations:
+
+
+```python
+codon_mut_types = os.path.join(figsdir, 'codon_mut_types.pdf')
+
+dms_tools2.plot.plotCodonMutTypes(
+        names=plasmid_and_virus_samples.name,
+        countsfiles=plasmid_and_virus_samples.countsfile,
+        plotfile=codon_mut_types,
+        )
+
+showPDF(codon_mut_types)
+```
+
+
+![png](analysis_notebook_files/analysis_notebook_133_0.png)
+
+
+We've already made a plot of replicate-replicate correlations in the measured mutational effects (amino-acid preferences), copy it here and show it:
+
+
+```python
+prefs_replicate_corr = os.path.join(figsdir, 'prefs_replicate_corr.pdf')
+shutil.copy(os.path.join(prefsdir, 'summary_prefscorr.pdf'), prefs_replicate_corr)
+showPDF(prefs_replicate_corr, width=300)
+```
+
+
+![png](analysis_notebook_files/analysis_notebook_135_0.png)
+
+
+### Logo plots of mutational effects on viral growth
+We use the logo plot of the unscaled preferences:
+
+
+```python
+unscaled_prefs = os.path.join(figsdir, 'unscaled_prefs.pdf')
+shutil.copy(os.path.join(logodir, 'unscaled_prefs.pdf'), unscaled_prefs)
+showPDF(unscaled_prefs)
+```
+
+
+![png](analysis_notebook_files/analysis_notebook_137_0.png)
+
+
+And the mutational effects on viral growth:
+
+
+```python
+unscaled_muteffects = os.path.join(figsdir, 'unscaled_muteffects.pdf')
+shutil.copy(os.path.join(logodir, 'unscaled_muteffects.pdf'), unscaled_muteffects)
+showPDF(unscaled_muteffects)
+```
+
+
+![png](analysis_notebook_files/analysis_notebook_139_0.png)
+
+
+### Comparison to natural evolution
 
 
 ```python
