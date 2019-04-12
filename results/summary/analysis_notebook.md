@@ -40,7 +40,7 @@ print(f"Using dms_tools2 {dms_tools2.__version__}")
 ```
 
     Using phydms 2.3.1
-    Using dms_tools2 2.4.8
+    Using dms_tools2 2.4.9
 
 
 Specify information about running analysis:
@@ -89,6 +89,8 @@ First, we read in the samples:
 ```python
 samples = (pandas.read_csv(samplelist)
            .assign(name=lambda x: x.library + '-' + x.selection)
+           .drop(columns='R1')  # don't need this column as we are downloading from SRA
+           .rename(columns={'SRA_accession': 'run'})
            )
 
 display(HTML(samples.to_html(index=False)))
@@ -102,7 +104,7 @@ display(HTML(samples.to_html(index=False)))
       <th>selection</th>
       <th>antibody</th>
       <th>percent_infectivity</th>
-      <th>R1</th>
+      <th>run</th>
       <th>name</th>
     </tr>
   </thead>
@@ -112,7 +114,7 @@ display(HTML(samples.to_html(index=False)))
       <td>plasmid</td>
       <td>none</td>
       <td>NaN</td>
-      <td>/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/170...</td>
+      <td>SRR8878405</td>
       <td>Lib1-plasmid</td>
     </tr>
     <tr>
@@ -120,7 +122,7 @@ display(HTML(samples.to_html(index=False)))
       <td>plasmid</td>
       <td>none</td>
       <td>NaN</td>
-      <td>/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/170...</td>
+      <td>SRR8878404</td>
       <td>Lib2-plasmid</td>
     </tr>
     <tr>
@@ -128,7 +130,7 @@ display(HTML(samples.to_html(index=False)))
       <td>plasmid</td>
       <td>none</td>
       <td>NaN</td>
-      <td>/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/170...</td>
+      <td>SRR8878399</td>
       <td>Lib3-plasmid</td>
     </tr>
     <tr>
@@ -136,7 +138,7 @@ display(HTML(samples.to_html(index=False)))
       <td>plasmid</td>
       <td>none</td>
       <td>NaN</td>
-      <td>/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/170...</td>
+      <td>SRR8878396</td>
       <td>wildtype-plasmid</td>
     </tr>
     <tr>
@@ -144,7 +146,7 @@ display(HTML(samples.to_html(index=False)))
       <td>virus</td>
       <td>none</td>
       <td>NaN</td>
-      <td>/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180...</td>
+      <td>SRR8878397</td>
       <td>Lib1-virus</td>
     </tr>
     <tr>
@@ -152,7 +154,7 @@ display(HTML(samples.to_html(index=False)))
       <td>virus</td>
       <td>none</td>
       <td>NaN</td>
-      <td>/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180...</td>
+      <td>SRR8878395</td>
       <td>Lib2-virus</td>
     </tr>
     <tr>
@@ -160,7 +162,7 @@ display(HTML(samples.to_html(index=False)))
       <td>virus</td>
       <td>none</td>
       <td>NaN</td>
-      <td>/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180...</td>
+      <td>SRR8878409</td>
       <td>Lib3-virus</td>
     </tr>
     <tr>
@@ -168,7 +170,7 @@ display(HTML(samples.to_html(index=False)))
       <td>virus</td>
       <td>none</td>
       <td>NaN</td>
-      <td>/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180...</td>
+      <td>SRR8878408</td>
       <td>wildtype-virus</td>
     </tr>
     <tr>
@@ -176,7 +178,7 @@ display(HTML(samples.to_html(index=False)))
       <td>no-antibody</td>
       <td>no-antibody</td>
       <td>71.06000</td>
-      <td>/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180...</td>
+      <td>SRR8878411</td>
       <td>Lib1-no-antibody</td>
     </tr>
     <tr>
@@ -184,7 +186,7 @@ display(HTML(samples.to_html(index=False)))
       <td>no-antibody</td>
       <td>no-antibody</td>
       <td>132.77000</td>
-      <td>/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180...</td>
+      <td>SRR8878398</td>
       <td>Lib2-no-antibody</td>
     </tr>
     <tr>
@@ -192,7 +194,7 @@ display(HTML(samples.to_html(index=False)))
       <td>no-antibody</td>
       <td>no-antibody</td>
       <td>86.42000</td>
-      <td>/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180...</td>
+      <td>SRR8878407</td>
       <td>Lib3-no-antibody</td>
     </tr>
     <tr>
@@ -200,7 +202,7 @@ display(HTML(samples.to_html(index=False)))
       <td>control-antibody</td>
       <td>control-antibody</td>
       <td>104.65000</td>
-      <td>/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180...</td>
+      <td>SRR8878406</td>
       <td>Lib1-control-antibody</td>
     </tr>
     <tr>
@@ -208,7 +210,7 @@ display(HTML(samples.to_html(index=False)))
       <td>control-antibody</td>
       <td>control-antibody</td>
       <td>67.35000</td>
-      <td>/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180...</td>
+      <td>SRR8878394</td>
       <td>Lib2-control-antibody</td>
     </tr>
     <tr>
@@ -216,7 +218,7 @@ display(HTML(samples.to_html(index=False)))
       <td>control-antibody</td>
       <td>control-antibody</td>
       <td>80.14000</td>
-      <td>/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180...</td>
+      <td>SRR8878410</td>
       <td>Lib3-control-antibody</td>
     </tr>
     <tr>
@@ -224,7 +226,7 @@ display(HTML(samples.to_html(index=False)))
       <td>ZKA64</td>
       <td>ZKA64</td>
       <td>2.34000</td>
-      <td>/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180...</td>
+      <td>SRR8878403</td>
       <td>Lib1-ZKA64</td>
     </tr>
     <tr>
@@ -232,7 +234,7 @@ display(HTML(samples.to_html(index=False)))
       <td>ZKA64</td>
       <td>ZKA64</td>
       <td>1.54000</td>
-      <td>/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180...</td>
+      <td>SRR8878402</td>
       <td>Lib2-ZKA64</td>
     </tr>
     <tr>
@@ -240,7 +242,7 @@ display(HTML(samples.to_html(index=False)))
       <td>ZKA64</td>
       <td>ZKA64</td>
       <td>2.21000</td>
-      <td>/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180...</td>
+      <td>SRR8878400</td>
       <td>Lib3-ZKA64</td>
     </tr>
     <tr>
@@ -248,7 +250,7 @@ display(HTML(samples.to_html(index=False)))
       <td>ZKA185</td>
       <td>ZKA185</td>
       <td>0.00059</td>
-      <td>/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180...</td>
+      <td>SRR8878401</td>
       <td>Lib1-ZKA185</td>
     </tr>
     <tr>
@@ -256,7 +258,7 @@ display(HTML(samples.to_html(index=False)))
       <td>ZKA185</td>
       <td>ZKA185</td>
       <td>1.93000</td>
-      <td>/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180...</td>
+      <td>SRR8878413</td>
       <td>Lib2-ZKA185</td>
     </tr>
     <tr>
@@ -264,11 +266,33 @@ display(HTML(samples.to_html(index=False)))
       <td>ZKA185</td>
       <td>ZKA185</td>
       <td>1.39000</td>
-      <td>/fh/fast/bloom_j/SR/ngs/illumina/bloom_lab/180...</td>
+      <td>SRR8878412</td>
       <td>Lib3-ZKA185</td>
     </tr>
   </tbody>
 </table>
+
+
+Now we use [dms_tools2.sra.fastqFromSRA](https://jbloomlab.github.io/dms_tools2/dms_tools2.sra.html) to download the FASTQ files from the SRA.
+When calling these functions, note that we need to provide a valid path to `fastq-dump` and possibly one to the Aspera executable and key.
+Below we provide valid paths for the Hutch server; you will need different paths if you're working on a different computer:
+
+
+```python
+fastqdir = os.path.join(resultsdir, 'FASTQ_files')
+print(f"FASTQ files will be downloaded to {fastqdir}")
+
+dms_tools2.sra.fastqFromSRA(
+        samples=samples,
+        fastq_dump='fastq-dump',
+        fastqdir=fastqdir,
+        aspera=('/app/aspera-connect/3.7.5/bin/ascp',
+                '/app/aspera-connect/3.7.5/etc/asperaweb_id_dsa.openssh'),
+        ncpus=ncpus,
+        )
+```
+
+    FASTQ files will be downloaded to ./results/FASTQ_files
 
 
 Now we read in the alignment specs for the [barcoded subamplicon sequencing](https://jbloomlab.github.io/dms_tools2/bcsubamp.html):
@@ -293,11 +317,12 @@ os.makedirs(countsdir, exist_ok=True)
 bcsubamp_batchfile = os.path.join(countsdir, 'batch.csv')
 samples[['name', 'R1']].to_csv(bcsubamp_batchfile, index=False)
 
-log = ! dms2_batch_bcsubamp \
+! dms2_batch_bcsubamp \
         --batchfile {bcsubamp_batchfile} \
         --refseq {refseqfile} \
         --alignspecs {alignspecs} \
         --outdir {countsdir} \
+        --fastqdir {fastqdir} \
         --summaryprefix summary \
         --R1trim 200 \
         --R2trim 200 \
@@ -312,6 +337,95 @@ assert all(map(os.path.isfile, samples.codoncounts))
 print(f"Processed sequencing data to create codon counts files in {countsdir}")
 ```
 
+    INFO:dms2_batch_bcsubamp:Beginning execution of dms2_batch_bcsubamp in directory /fh/fast/bloom_j/computational_notebooks/jbloom/2018/ZIKV_DMS_with_EvansLab
+    
+    INFO:dms2_batch_bcsubamp:Progress is being logged to ./results/codoncounts/summary.log
+    INFO:dms2_batch_bcsubamp:Version information:
+    	Time and date: Thu Apr 11 19:38:24 2019
+    	Platform: Linux-3.13.0-167-generic-x86_64-with-debian-jessie-sid
+    	Python version: 3.6.7 | packaged by conda-forge | (default, Nov 21 2018, 02:32:25)  [GCC 4.8.2 20140120 (Red Hat 4.8.2-15)]
+    	dms_tools2 version: 2.4.9
+    	Bio version: 1.72
+    	HTSeq version: 0.11.0
+    	pandas version: 0.24.2
+    	numpy version: 1.15.4
+    	IPython version: 7.2.0
+    	jupyter version: 1.0.0
+    	matplotlib version: 3.0.2
+    	plotnine version: 0.5.1
+    	natsort version: 5.5.0
+    	pystan version: 2.16.0.0
+    	scipy version: 1.1.0
+    	seaborn version: 0.9.0
+    	phydmslib version: 2.3.1
+    	statsmodels version: 0.9.0
+    	rpy2 version: 2.9.1
+    	regex version: 2.4.153
+    	umi_tools version: 1.0.0
+    
+    INFO:dms2_batch_bcsubamp:Parsed the following arguments:
+    	outdir = ./results/codoncounts
+    	ncpus = 16
+    	use_existing = yes
+    	refseq = ./data/E.fasta
+    	alignspecs = ['1,303,33,38', '304,609,38,40', '610,903,41,36', '904,1200,41,37', '1201,1512,36,35']
+    	bclen = 8
+    	fastqdir = ./results/FASTQ_files
+    	R2 = None
+    	R1trim = [200]
+    	R2trim = [200]
+    	bclen2 = None
+    	chartype = codon
+    	maxmuts = 4
+    	minq = 15
+    	minreads = 2
+    	minfraccall = 0.95
+    	minconcur = 0.75
+    	sitemask = None
+    	purgeread = 0
+    	purgebc = 0
+    	bcinfo = False
+    	batchfile = ./results/codoncounts/batch.csv
+    	summaryprefix = summary
+    
+    INFO:dms2_batch_bcsubamp:Parsing sample info from ./results/codoncounts/batch.csv
+    INFO:dms2_batch_bcsubamp:Read the following sample information:
+    name,R1
+    Lib1-plasmid,Lib1-plasmid_R1.fastq.gz
+    Lib2-plasmid,Lib2-plasmid_R1.fastq.gz
+    Lib3-plasmid,Lib3-plasmid_R1.fastq.gz
+    wildtype-plasmid,wildtype-plasmid_R1.fastq.gz
+    Lib1-virus,Lib1-virus_R1.fastq.gz
+    Lib2-virus,Lib2-virus_R1.fastq.gz
+    Lib3-virus,Lib3-virus_R1.fastq.gz
+    wildtype-virus,wildtype-virus_R1.fastq.gz
+    Lib1-no-antibody,Lib1-no-antibody_R1.fastq.gz
+    Lib2-no-antibody,Lib2-no-antibody_R1.fastq.gz
+    Lib3-no-antibody,Lib3-no-antibody_R1.fastq.gz
+    Lib1-control-antibody,Lib1-control-antibody_R1.fastq.gz
+    Lib2-control-antibody,Lib2-control-antibody_R1.fastq.gz
+    Lib3-control-antibody,Lib3-control-antibody_R1.fastq.gz
+    Lib1-ZKA64,Lib1-ZKA64_R1.fastq.gz
+    Lib2-ZKA64,Lib2-ZKA64_R1.fastq.gz
+    Lib3-ZKA64,Lib3-ZKA64_R1.fastq.gz
+    Lib1-ZKA185,Lib1-ZKA185_R1.fastq.gz
+    Lib2-ZKA185,Lib2-ZKA185_R1.fastq.gz
+    Lib3-ZKA185,Lib3-ZKA185_R1.fastq.gz
+    
+    
+    INFO:dms2_batch_bcsubamp:Running dms2_bcsubamp on all samples using 16 CPUs...
+    INFO:dms2_batch_bcsubamp:Completed runs of dms2_bcsubamp.
+    
+    INFO:dms2_batch_bcsubamp:Plotting read stats to ./results/codoncounts/summary_readstats.pdf
+    INFO:dms2_batch_bcsubamp:Plotting barcode stats to ./results/codoncounts/summary_bcstats.pdf
+    INFO:dms2_batch_bcsubamp:Plotting reads per barcode to ./results/codoncounts/summary_readsperbc.pdf
+    INFO:dms2_batch_bcsubamp:Plotting count depth to ./results/codoncounts/summary_depth.pdf
+    INFO:dms2_batch_bcsubamp:Plotting mutation frequencies to ./results/codoncounts/summary_mutfreq.pdf
+    INFO:dms2_batch_bcsubamp:Plotting average frequencies of codon mutation types to ./results/codoncounts/summary_codonmuttypes.pdf, writing the data to ./results/codoncounts/summary_codonmuttypes.csv
+    INFO:dms2_batch_bcsubamp:Plotting average frequencies of nucleotide changes per codon mutation to ./results/codoncounts/summary_codonntchanges.pdf
+    INFO:dms2_batch_bcsubamp:Plotting frequencies of nucleotide changes in 1-nucleotide mutations to ./results/codoncounts/summary_singlentchanges.pdf
+    INFO:dms2_batch_bcsubamp:Plotting fraction of mutations seen less than some number of times to ./results/codoncounts/summary_cumulmutcounts.pdf
+    INFO:dms2_batch_bcsubamp:Successful completion of dms2_batch_bcsubamp
     Processed sequencing data to create codon counts files in ./results/codoncounts
 
 
@@ -335,7 +449,7 @@ showPDF([bcsubamp_plot_prefix + 'readstats.pdf',
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_17_0.png)
+![png](analysis_notebook_files/analysis_notebook_19_0.png)
 
 
 Next we look at number of reads per barcode.
@@ -349,7 +463,7 @@ showPDF(bcsubamp_plot_prefix + 'readsperbc.pdf')
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_19_0.png)
+![png](analysis_notebook_files/analysis_notebook_21_0.png)
 
 
 Now we look at the depth across the gene.
@@ -362,7 +476,7 @@ showPDF(bcsubamp_plot_prefix + 'depth.pdf')
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_21_0.png)
+![png](analysis_notebook_files/analysis_notebook_23_0.png)
 
 
 Here are the mutation frequencies across the gene.
@@ -375,7 +489,7 @@ showPDF(bcsubamp_plot_prefix + 'mutfreq.pdf')
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_23_0.png)
+![png](analysis_notebook_files/analysis_notebook_25_0.png)
 
 
 We also see that as expected, we get strong selection against stop codons in all samples except the unselected input plasmid library:
@@ -386,7 +500,7 @@ showPDF(bcsubamp_plot_prefix + 'codonmuttypes.pdf')
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_25_0.png)
+![png](analysis_notebook_files/analysis_notebook_27_0.png)
 
 
 We have single and multi-nucleotide changes in the libraries, although the single nucleotide changes are perhaps over-represented:
@@ -397,7 +511,7 @@ showPDF(bcsubamp_plot_prefix + 'codonntchanges.pdf')
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_27_0.png)
+![png](analysis_notebook_files/analysis_notebook_29_0.png)
 
 
 Here are the frequencies of different types of mutations among single-nucleotide codon changes.
@@ -409,7 +523,7 @@ showPDF(bcsubamp_plot_prefix + 'singlentchanges.pdf')
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_29_0.png)
+![png](analysis_notebook_files/analysis_notebook_31_0.png)
 
 
 Finally, we look at mutation sampling.
@@ -421,7 +535,7 @@ showPDF(bcsubamp_plot_prefix + 'cumulmutcounts.pdf')
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_31_0.png)
+![png](analysis_notebook_files/analysis_notebook_33_0.png)
 
 
 ## Amino-acid preferences under functional selection
@@ -519,7 +633,7 @@ showPDF(os.path.join(prefsdir, 'summary_prefscorr.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_37_0.png)
+![png](analysis_notebook_files/analysis_notebook_39_0.png)
 
 
 Now we will make a logo plot of the average of the amino-acid preferences across the libraries.
@@ -557,7 +671,7 @@ showPDF(os.path.join(logodir, 'unscaled_prefs.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_39_0.png)
+![png](analysis_notebook_files/analysis_notebook_41_0.png)
 
 
 ## Mutational effects
@@ -679,7 +793,7 @@ showPDF(os.path.join(logodir, 'unscaled_muteffects.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_49_0.png)
+![png](analysis_notebook_files/analysis_notebook_51_0.png)
 
 
 ## Phylogenetic analyses with experimentally informed codon models
@@ -768,7 +882,7 @@ showPDF(treefigfile)
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_57_0.png)
+![png](analysis_notebook_files/analysis_notebook_59_0.png)
 
 
 Now let's look at the result of the phylogenetic model comparison from the analysis.
@@ -911,7 +1025,7 @@ showPDF(os.path.join(logodir, 'rescaled_prefs.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_65_0.png)
+![png](analysis_notebook_files/analysis_notebook_67_0.png)
 
 
 ## Differential selection
@@ -1183,7 +1297,7 @@ showPDF([os.path.join(diffseldir, f'summary_{antibody}-positivesitediffselcorr.p
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_77_0.png)
+![png](analysis_notebook_files/analysis_notebook_79_0.png)
 
 
 Now we look at the positive differential selection for each antibody, taking the average across the replicates.
@@ -1195,7 +1309,7 @@ showPDF(os.path.join(diffseldir, 'summary_meanpositivediffsel.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_79_0.png)
+![png](analysis_notebook_files/analysis_notebook_81_0.png)
 
 
 We also look at the total differential selection, including **negative** differential selection.
@@ -1208,7 +1322,7 @@ showPDF(os.path.join(diffseldir, 'summary_meantotaldiffsel.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_81_0.png)
+![png](analysis_notebook_files/analysis_notebook_83_0.png)
 
 
 Finally, we use [dms2_logoplot](https://jbloomlab.github.io/dms_tools2/dms2_logoplot.html) to make a logo plot of the across-replicate average **positive** (not use of `--restrictdiffsel positive`) differential selection for each non-control antibody:
@@ -1239,7 +1353,7 @@ for antibody in diffsel_batch.query('group != "control-antibody"').group.unique(
 
 
 
-![png](analysis_notebook_files/analysis_notebook_83_1.png)
+![png](analysis_notebook_files/analysis_notebook_85_1.png)
 
 
     
@@ -1248,7 +1362,7 @@ for antibody in diffsel_batch.query('group != "control-antibody"').group.unique(
 
 
 
-![png](analysis_notebook_files/analysis_notebook_83_3.png)
+![png](analysis_notebook_files/analysis_notebook_85_3.png)
 
 
 ## Fraction surviving
@@ -1291,7 +1405,7 @@ showPDF([os.path.join(fracsurvivedir, f'summary_{antibody}-avgfracsurvivecorr.pd
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_89_0.png)
+![png](analysis_notebook_files/analysis_notebook_91_0.png)
 
 
 Here is the average across replicates of each site's average fracsurvive:
@@ -1302,7 +1416,7 @@ showPDF(os.path.join(fracsurvivedir, 'summary_meanavgfracsurvive.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_91_0.png)
+![png](analysis_notebook_files/analysis_notebook_93_0.png)
 
 
 Finally, we use [dms2_logoplot](https://jbloomlab.github.io/dms_tools2/dms2_logoplot.html) to make a logo plot of the across-replicate fraction surviving for each non-control antibody:
@@ -1332,7 +1446,7 @@ for antibody in diffsel_batch.query('group != "control-antibody"').group.unique(
 
 
 
-![png](analysis_notebook_files/analysis_notebook_93_1.png)
+![png](analysis_notebook_files/analysis_notebook_95_1.png)
 
 
     
@@ -1341,7 +1455,7 @@ for antibody in diffsel_batch.query('group != "control-antibody"').group.unique(
 
 
 
-![png](analysis_notebook_files/analysis_notebook_93_3.png)
+![png](analysis_notebook_files/analysis_notebook_95_3.png)
 
 
 The results for fraction surviving look mostly similar to those for differential selection, but there are some differences, and it is probably worth considering which metric seems to better capture the real biology.
@@ -1536,7 +1650,7 @@ for scaling, df in [('rescaled', rescaledprefs),
 
 
 
-![png](analysis_notebook_files/analysis_notebook_100_1.png)
+![png](analysis_notebook_files/analysis_notebook_102_1.png)
 
 
     
@@ -1545,7 +1659,7 @@ for scaling, df in [('rescaled', rescaledprefs),
 
 
 
-![png](analysis_notebook_files/analysis_notebook_100_3.png)
+![png](analysis_notebook_files/analysis_notebook_102_3.png)
 
 
 The logo plots above show the amino-acid preferences, although it is sometimes hard to see the relative effects of mutations with small preferences.
@@ -1589,7 +1703,7 @@ _ = (
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_104_0.png)
+![png](analysis_notebook_files/analysis_notebook_106_0.png)
 
 
 Now we get the effects of the experimentall characterized mutations:
@@ -1783,7 +1897,7 @@ _ = (
 
 
 
-![png](analysis_notebook_files/analysis_notebook_108_1.png)
+![png](analysis_notebook_files/analysis_notebook_110_1.png)
 
 
 The histogram above suggests that the correlation between the experiments and deep mutational scanning is OK. 
@@ -1902,6 +2016,7 @@ display(HTML(sigsites
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
+      <th>library</th>
       <th>antibody</th>
       <th>site</th>
       <th>Lib1</th>
@@ -1912,6 +2027,7 @@ display(HTML(sigsites
   </thead>
   <tbody>
     <tr>
+      <th></th>
       <td>ZKA185</td>
       <td>118</td>
       <td>NaN</td>
@@ -1920,6 +2036,7 @@ display(HTML(sigsites
       <td>1.426303e-74</td>
     </tr>
     <tr>
+      <th></th>
       <td>ZKA185</td>
       <td>67</td>
       <td>NaN</td>
@@ -1928,6 +2045,7 @@ display(HTML(sigsites
       <td>3.510260e-72</td>
     </tr>
     <tr>
+      <th></th>
       <td>ZKA185</td>
       <td>83</td>
       <td>NaN</td>
@@ -1936,6 +2054,7 @@ display(HTML(sigsites
       <td>7.189542e-32</td>
     </tr>
     <tr>
+      <th></th>
       <td>ZKA185</td>
       <td>69</td>
       <td>NaN</td>
@@ -1944,6 +2063,7 @@ display(HTML(sigsites
       <td>2.890496e-18</td>
     </tr>
     <tr>
+      <th></th>
       <td>ZKA64</td>
       <td>333</td>
       <td>1.391771e-26</td>
@@ -1952,6 +2072,7 @@ display(HTML(sigsites
       <td>3.492285e-83</td>
     </tr>
     <tr>
+      <th></th>
       <td>ZKA64</td>
       <td>335</td>
       <td>1.000000e+00</td>
@@ -1960,6 +2081,7 @@ display(HTML(sigsites
       <td>1.268177e-54</td>
     </tr>
     <tr>
+      <th></th>
       <td>ZKA64</td>
       <td>315</td>
       <td>1.220183e-01</td>
@@ -2062,7 +2184,7 @@ for antibody in antibodies:
 
 
 
-![png](analysis_notebook_files/analysis_notebook_121_1.png)
+![png](analysis_notebook_files/analysis_notebook_123_1.png)
 
 
     
@@ -2073,7 +2195,7 @@ for antibody in antibodies:
 
 
 
-![png](analysis_notebook_files/analysis_notebook_121_3.png)
+![png](analysis_notebook_files/analysis_notebook_123_3.png)
 
 
 Based on the above, I would suggest the following mutations to test:
