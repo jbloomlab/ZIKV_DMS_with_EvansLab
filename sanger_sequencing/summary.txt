@@ -1,0 +1,21 @@
+Reading mutations from zikv_E/E_var_muts.txt
+Read entries for 40 clones
+
+Substitutions begin at following positions: 7, 17, 23, 25, 30, 31, 31, 38, 44, 48, 60, 65, 70, 71, 72, 104, 105, 106, 109, 123, 128, 129, 136, 137, 142, 154, 156, 172, 177, 185, 187, 190, 198, 227, 227, 227, 229, 235, 243, 251, 256, 275, 284, 286, 290, 290, 293, 302, 304, 305, 318, 325, 332, 346, 348, 352, 356, 361, 377, 377, 378, 386, 395, 438, 446, 470, 470, 503
+
+Indels begin at following positions: 54, 54, 222, 225, 225, 225, 226, 226, 226
+
+Found a total of 68 substitutions out of 20160 codons sequenced (0.0034)
+
+Here are the fractions with different numbers of nucleotide mutations:
+  1 nucleotide mutations: 0.00079365
+  2 nucleotide mutations: 0.00158730
+  3 nucleotide mutations: 0.00099206
+
+Here are the fractions of mutation types
+  synonymous: 0.00014881
+  nonsynonymous: 0.00297619
+  stop codon: 0.00024802
+
+Overall summary:
+40 clones, avg. 1.700 codon substitutions, avg. 0.225 indels
