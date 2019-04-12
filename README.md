@@ -35,6 +35,8 @@ Specifically:
 
   - [./results/logoplots](results/logoplots) contains logo plots visualizing the amino-acid preferences, differential selection, and excess fraction surviving.
 
+  - [./results/figures](results/figures) contains plots that we anticipate being figures in the paper.
+
 ## Input data
 The input data are in the [./data/](data) subdirectory.
 These data consist of:
@@ -52,4 +54,4 @@ These data consist of:
    - Genome region: E
    - Isolation source: any
    - Collapse identical sequences: checked ("Note: All groups of identical sequences in the dataset will be represented by the oldest sequence in the group.")
-   - Added the E region of our WT sequence for [MR766](https://www.ncbi.nlm.nih.gov/nuccore/KX830961) as the reference sequence and used [`phydms_prepalignment`](http://jbloomlab.github.io/phydms/phydms_prepalignment.html) to trim the alignment and remove any sequences that are redundant or incomplete. A number of sequences appeared to be derived from an experiment and were removed manually. 
+   - Added the E region of our WT sequence for [MR766](https://www.ncbi.nlm.nih.gov/nuccore/KX830961) as the reference sequence and used [`phydms_prepalignment`](http://jbloomlab.github.io/phydms/phydms_prepalignment.html) to trim the alignment and remove any sequences that are redundant or incomplete. A number of sequences appeared to be derived from an experiment or otherwise spurious and were removed manually. 
