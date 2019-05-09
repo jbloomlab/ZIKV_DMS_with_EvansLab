@@ -5,7 +5,7 @@ Sequencing and computational analyses performed by Danny Lawrence and Jesse Bloo
 
 ## Quick summary
 Look at the Jupyter notebook [analysis_notebook.ipynb](analysis_notebook.ipynb), or its markdown output at [results/summary/analysis_notebook.md](results/summary/analysis_notebook.md) for the results of the deep mutational scanning.
-The growth curve data are analyzed and plotted by [plot_growth_data.ipynb](plot_growth_data.ipynb), and its markdown output is at [results/plot_growth_data.ipynb](results/plot_growth_data.md).
+The growth curve data are analyzed and plotted by [plot_growth_data.ipynb](plot_growth_data.ipynb), and its markdown output is at [results/summary/plot_growth_data.md](results/summary/plot_growth_data.md).
 
 ## Running the notebooks
 You can run the notebooks with the [run_nbs.bash](run_nbs.bash):
