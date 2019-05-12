@@ -203,6 +203,20 @@ saveShowPlot(dms_titer_vals, 11.5, 4.25)
 ![png](plot_growth_data_files/plot_growth_data_15_0.png)
 
 
+With black error bars:
+
+
+```R
+dms_titer_vals_black_error <- dms_titer_vals + 
+  geom_errorbar(aes(ymin=titer - titer_SD, ymax=titer + titer_SD), width=0.2, color='black')
+
+saveShowPlot(dms_titer_vals_black_error, 11.5, 4.25)
+```
+
+
+![png](plot_growth_data_files/plot_growth_data_17_0.png)
+
+
 Use cowplot to arrange into a single figure:
 
 
@@ -216,10 +230,21 @@ saveShowPlot(merged_plot, 12.5, 7.5)
 ```
 
 
-![png](plot_growth_data_files/plot_growth_data_17_0.png)
+![png](plot_growth_data_files/plot_growth_data_19_0.png)
 
+
+Same figure with black error bars:
 
 
 ```R
+merged_plot_black_error <- plot_grid(
+    dms_titer_vals_black_error, dms_titer_corr,
+    labels=c("A", "B"), label_size=18,
+    ncol=1, rel_heights=c(4.25, 2.75), scale=0.95)
 
+saveShowPlot(merged_plot_black_error, 12.5, 7.5)
 ```
+
+
+![png](plot_growth_data_files/plot_growth_data_21_0.png)
+
