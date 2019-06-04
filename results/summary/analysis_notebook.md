@@ -1,6 +1,6 @@
 
 <h1>Table of Contents<span class="tocSkip"></span></h1>
-<div class="toc"><ul class="toc-item"><li><span><a href="#Deep-mutational-scanning-of-ZIKV-E-protein" data-toc-modified-id="Deep-mutational-scanning-of-ZIKV-E-protein-1">Deep mutational scanning of ZIKV E protein</a></span><ul class="toc-item"><li><span><a href="#Set-up-for-analysis" data-toc-modified-id="Set-up-for-analysis-1.1">Set up for analysis</a></span></li><li><span><a href="#Process-deep-sequencing-data" data-toc-modified-id="Process-deep-sequencing-data-1.2">Process deep sequencing data</a></span></li><li><span><a href="#Amino-acid-preferences-under-functional-selection" data-toc-modified-id="Amino-acid-preferences-under-functional-selection-1.3">Amino-acid preferences under functional selection</a></span></li><li><span><a href="#Mutational-effects" data-toc-modified-id="Mutational-effects-1.4">Mutational effects</a></span></li><li><span><a href="#Phylogenetic-analyses-with-experimentally-informed-codon-models" data-toc-modified-id="Phylogenetic-analyses-with-experimentally-informed-codon-models-1.5">Phylogenetic analyses with experimentally informed codon models</a></span></li><li><span><a href="#Differential-selection" data-toc-modified-id="Differential-selection-1.6">Differential selection</a></span></li><li><span><a href="#Fraction-surviving" data-toc-modified-id="Fraction-surviving-1.7">Fraction surviving</a></span></li><li><span><a href="#Mutations-tested-by-Evans-lab" data-toc-modified-id="Mutations-tested-by-Evans-lab-1.8">Mutations tested by Evans lab</a></span></li><li><span><a href="#Choose-&quot;significant&quot;-antibody-escape-mutations-for-validation" data-toc-modified-id="Choose-&quot;significant&quot;-antibody-escape-mutations-for-validation-1.9">Choose "significant" antibody-escape mutations for validation</a></span></li><li><span><a href="#Figures-for-paper" data-toc-modified-id="Figures-for-paper-1.10">Figures for paper</a></span><ul class="toc-item"><li><span><a href="#Figures-about-library-and-selection" data-toc-modified-id="Figures-about-library-and-selection-1.10.1">Figures about library and selection</a></span></li><li><span><a href="#Logo-plots-of-mutational-effects-on-viral-growth" data-toc-modified-id="Logo-plots-of-mutational-effects-on-viral-growth-1.10.2">Logo plots of mutational effects on viral growth</a></span></li><li><span><a href="#Comparison-to-natural-evolution" data-toc-modified-id="Comparison-to-natural-evolution-1.10.3">Comparison to natural evolution</a></span></li></ul></li></ul></li></ul></div>
+<div class="toc"><ul class="toc-item"><li><span><a href="#Deep-mutational-scanning-of-ZIKV-E-protein" data-toc-modified-id="Deep-mutational-scanning-of-ZIKV-E-protein-1">Deep mutational scanning of ZIKV E protein</a></span><ul class="toc-item"><li><span><a href="#Set-up-for-analysis" data-toc-modified-id="Set-up-for-analysis-1.1">Set up for analysis</a></span></li><li><span><a href="#Process-deep-sequencing-data" data-toc-modified-id="Process-deep-sequencing-data-1.2">Process deep sequencing data</a></span></li><li><span><a href="#Amino-acid-preferences-under-functional-selection" data-toc-modified-id="Amino-acid-preferences-under-functional-selection-1.3">Amino-acid preferences under functional selection</a></span></li><li><span><a href="#Mutational-effects" data-toc-modified-id="Mutational-effects-1.4">Mutational effects</a></span></li><li><span><a href="#Phylogenetic-analyses-with-experimentally-informed-codon-models" data-toc-modified-id="Phylogenetic-analyses-with-experimentally-informed-codon-models-1.5">Phylogenetic analyses with experimentally informed codon models</a></span></li><li><span><a href="#Differential-selection" data-toc-modified-id="Differential-selection-1.6">Differential selection</a></span></li><li><span><a href="#Fraction-surviving" data-toc-modified-id="Fraction-surviving-1.7">Fraction surviving</a></span></li><li><span><a href="#Mutations-tested-by-Evans-lab" data-toc-modified-id="Mutations-tested-by-Evans-lab-1.8">Mutations tested by Evans lab</a></span></li><li><span><a href="#Choose-&quot;significant&quot;-antibody-escape-mutations-for-validation" data-toc-modified-id="Choose-&quot;significant&quot;-antibody-escape-mutations-for-validation-1.9">Choose "significant" antibody-escape mutations for validation</a></span></li><li><span><a href="#Figures-for-paper" data-toc-modified-id="Figures-for-paper-1.10">Figures for paper</a></span><ul class="toc-item"><li><span><a href="#Figures-about-library-and-selection" data-toc-modified-id="Figures-about-library-and-selection-1.10.1">Figures about library and selection</a></span></li><li><span><a href="#Logo-plots-of-mutational-effects-on-viral-growth" data-toc-modified-id="Logo-plots-of-mutational-effects-on-viral-growth-1.10.2">Logo plots of mutational effects on viral growth</a></span></li><li><span><a href="#Comparison-to-natural-evolution" data-toc-modified-id="Comparison-to-natural-evolution-1.10.3">Comparison to natural evolution</a></span></li><li><span><a href="#Antibody-escape" data-toc-modified-id="Antibody-escape-1.10.4">Antibody escape</a></span></li></ul></li></ul></li></ul></div>
 
 # Deep mutational scanning of ZIKV E protein
 Deep mutational scanning of ZIKV E from the MR766 strain.
@@ -47,8 +47,8 @@ print(f"Using dmslogo {dmslogo.__version__}")
 ```
 
     Using phydms 2.3.1
-    Using dms_tools2 2.4.9
-    Using dmslogo 0.1.0
+    Using dms_tools2 2.4.10
+    Using dmslogo 0.2.2
 
 
 Specify information about running analysis:
@@ -782,7 +782,7 @@ for tip in tree.get_terminals():
 Bio.Phylo.draw(tree,
                do_show=False)
 treefig = plt.gcf()
-treefig.set_size_inches(20, 13)
+treefig.set_size_inches(17, 14)
 ax = treefig.axes[0]
 ax.axis('off')
 
@@ -1228,12 +1228,12 @@ showPDF([os.path.join(diffseldir, f'summary_{antibody}-positivesitediffselcorr.p
 ![png](analysis_notebook_files/analysis_notebook_80_0.png)
 
 
-Now we look at the positive differential selection for each antibody, taking the median across the replicates.
+Now we look at the positive differential selection for each antibody, taking the mean across the replicates.
 We see clear peaks of differentially selected sites for both antibodies, but no peaks for the control antibody:
 
 
 ```python
-showPDF(os.path.join(diffseldir, 'summary_medianpositivediffsel.pdf'))
+showPDF(os.path.join(diffseldir, 'summary_meanpositivediffsel.pdf'))
 ```
 
 
@@ -1246,21 +1246,21 @@ Still, we plot it in case it actually indicates sites where mutations increase n
 
 
 ```python
-showPDF(os.path.join(diffseldir, 'summary_mediantotaldiffsel.pdf'))
+showPDF(os.path.join(diffseldir, 'summary_meantotaldiffsel.pdf'))
 ```
 
 
 ![png](analysis_notebook_files/analysis_notebook_84_0.png)
 
 
-Finally, we use [dms2_logoplot](https://jbloomlab.github.io/dms_tools2/dms2_logoplot.html) to make a logo plot of the across-replicate median **positive** (note use of `--restrictdiffsel positive`) differential selection for each non-control antibody:
+Finally, we use [dms2_logoplot](https://jbloomlab.github.io/dms_tools2/dms2_logoplot.html) to make a logo plot of the across-replicate mean **positive** (note use of `--restrictdiffsel positive`) differential selection for each non-control antibody:
 
 
 ```python
 for antibody in diffsel_batch.query('group != "control-antibody"').group.unique():
     logoplot = os.path.join(logodir, f"{antibody}_diffsel.pdf")
     diffselfile = os.path.join(diffseldir,
-                               f'summary_{antibody}-medianmutdiffsel.csv')
+                               f'summary_{antibody}-meanmutdiffsel.csv')
     print(f"\n\nDiffsel for {antibody} (plot saved to {logoplot}):")
     log = ! dms2_logoplot \
         --outdir {logodir} \
@@ -1271,7 +1271,7 @@ for antibody in diffsel_batch.query('group != "control-antibody"').group.unique(
         --overlay1 {wtoverlayfile} wildtype wildtype \
         --scalebar 10 "diffsel = 10" \
         --underlay yes \
-        --use_existing {use_existing}
+        --use_existing no
     showPDF(logoplot)
 ```
 
@@ -1336,25 +1336,25 @@ showPDF([os.path.join(fracsurvivedir, f'summary_{antibody}-avgfracsurvivecorr.pd
 ![png](analysis_notebook_files/analysis_notebook_92_0.png)
 
 
-Here is the median across replicates of each site's average fracsurvive:
+Here is the mean across replicates of each site's average fracsurvive:
 
 
 ```python
-showPDF(os.path.join(fracsurvivedir, 'summary_medianavgfracsurvive.pdf'))
+showPDF(os.path.join(fracsurvivedir, 'summary_meanavgfracsurvive.pdf'))
 ```
 
 
 ![png](analysis_notebook_files/analysis_notebook_94_0.png)
 
 
-Finally, we use [dms2_logoplot](https://jbloomlab.github.io/dms_tools2/dms2_logoplot.html) to make a logo plot of the median across-replicate fraction surviving for each non-control antibody:
+Finally, we use [dms2_logoplot](https://jbloomlab.github.io/dms_tools2/dms2_logoplot.html) to make a logo plot of the mean across-replicate fraction surviving for each non-control antibody:
 
 
 ```python
 for antibody in diffsel_batch.query('group != "control-antibody"').group.unique():
     logoplot = os.path.join(logodir, f"{antibody}_fracsurvive.pdf")
     fracsurvivefile = os.path.join(fracsurvivedir,
-                               f'summary_{antibody}-medianmutfracsurvive.csv')
+                               f'summary_{antibody}-meanmutfracsurvive.csv')
     print(f"\n\nFracsurvive for {antibody} (plot saved to {logoplot}):")
     log = ! dms2_logoplot \
         --outdir {logodir} \
@@ -1364,7 +1364,7 @@ for antibody in diffsel_batch.query('group != "control-antibody"').group.unique(
         --overlay1 {wtoverlayfile} wildtype wildtype \
         --scalebar 1 "fracsurvive = 1" \
         --underlay yes \
-        --use_existing {use_existing}
+        --use_existing no
     showPDF(logoplot)
 ```
 
@@ -2327,6 +2327,91 @@ showPDF(unscaled_muteffects)
 
 
 ### Comparison to natural evolution
+
+Here is the tree:
+
+
+```python
+tree = os.path.join(figsdir, 'tree.pdf')
+shutil.copy(treefigfile, tree)
+showPDF(tree)
+```
+
+
+![png](analysis_notebook_files/analysis_notebook_142_0.png)
+
+
+Show natural amino acid frequencies in this alignment:
+
+
+```python
+aafreqs = dms_tools2.prefs.aafreqsFromAlignment(alignment_file, True)
+aafreqsfile = os.path.join(figsdir, 'natural_aafreqs.csv')
+aafreqs.to_csv(aafreqsfile, index=False)
+
+log = ! dms2_logoplot \
+        --prefs {aafreqsfile} \
+        --name aafreqs \
+        --outdir {figsdir} \
+        --nperline 84 \
+        --overlay1 {wtoverlayfile} wildtype wildtype 
+
+showPDF(os.path.join(figsdir, 'aafreqs_prefs.pdf'))
+```
+
+
+![png](analysis_notebook_files/analysis_notebook_144_0.png)
+
+
+### Antibody escape
+Make zoomed figures:
+
+
+```python
+zoomsites = [315, 333, 335, 67, 118, 69, 83]
+
+antibody_info = pandas.DataFrame(
+                 {'antibody': antibodies,
+                  'sitediffsel_file': [os.path.join(diffseldir,
+                                       f"summary_{a}-meansitediffsel.csv") for
+                                       a in antibodies],
+                  'mutdiffsel_file': [os.path.join(diffseldir,
+                                      f"summary_{a}-meanmutdiffsel.csv") for
+                                      a in antibodies]
+                  })
+
+antibodydata = (dms_tools2.diffsel.df_read_filecols(antibody_info,
+                                                    filecols=['sitediffsel_file',
+                                                              'mutdiffsel_file'])
+                .assign(show_site=lambda x: x['site'].isin(zoomsites),
+                        site_label=lambda x: x['wildtype'] + x['site'].astype(str))
+                )
+
+fig, axes = dmslogo.facet_plot(
+        antibodydata,
+        gridrow_col='antibody',
+        x_col='isite',
+        show_col='show_site',
+        draw_line_kwargs={'height_col': 'positive_diffsel',
+                          'xtick_col': 'site',
+                          'ylabel': 'antibody selection (diffsel)'},
+        draw_logo_kwargs={'letter_col': 'mutation',
+                          'letter_height_col': 'mutdiffsel',
+                          'xtick_col': 'site_label',
+                          'xlabel': 'site',
+                          'clip_negative_heights': True,
+                          'ylabel': ''},
+        line_titlesuffix='(site-level)',
+        logo_titlesuffix='(mutation-level)',
+        )
+
+antibodyzoom = os.path.join(figsdir, 'antibody_zoom.pdf')
+fig.savefig(antibodyzoom)
+```
+
+
+![png](analysis_notebook_files/analysis_notebook_146_0.png)
+
 
 
 ```python
