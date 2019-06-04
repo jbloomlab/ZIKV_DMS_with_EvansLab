@@ -25,16 +25,13 @@ def MapDiffSeltoPDB(infile,
                      map_type = 'site_diffsel', 
                      restrict_to_chain = False, 
                      script_preamble = None,
-                     script_postamble = False,
-                     condition = None):
-    '''Writes a colormapping script to be run in pymol; the colormapping is based on fracsurvive 
-    to color a structure'''
+                     script_postamble = True,
+                     condition = True):
+    '''Writes a colormapping script to be run in pymol to color a structure'''
     df = pd.read_csv(infile)
     df = df.dropna()
     column_names = list(df)
-    #print(df)
-        
-    #print(df)
+
     
     # establish the color spectrum in hex and rgb.
     n_subdivisions = 500 # the color spectrum will be divided into this many discrete colors
@@ -79,59 +76,42 @@ def MapDiffSeltoPDB(infile,
         f.write("cmd.color(\'color{0}\', \'resi {0}\')\n".format(r))
     
     if script_postamble:
-        f.write("""cmd.create("dimer", "chain C+E")
-cmd.show("surface", "dimer")
-cmd.hide("everything", "5IRE")
-cmd.set_view ("\\
-    -0.352205604,    0.911581576,   -0.212054998,\\
-     0.782968819,    0.162855446,   -0.600361347,\\
-    -0.512743294,   -0.377484351,   -0.771101713,\\
-     0.000000000,    0.000000000, -447.172607422,\\
-  -115.573463440, -110.383399963, -125.525375366,\\
-   352.554290771,  541.790893555,  -20.000000000" )
-
-cmd.select("glycan1", "/dimer//C/NAG`600+601")
-cmd.select("glycan2", "/dimer//E/NAG`600+601")
-cmd.hide("everything", "glycan1")
-cmd.hide("everything", "glycan2")
-cmd.deselect()
-cmd.set("ray_opaque_background", "off")
-cmd.png("MR766_{0}_top.png", ray=1)
-
-cmd.set_view ("\\
-    -0.375719965,   -0.311803222,   -0.872701287,\\
-     0.787538230,   -0.603787839,   -0.123329692,\\
-    -0.488471270,   -0.733628869,    0.472416550,\\
-     0.000000000,    0.000000000, -447.172607422,\\
-  -115.573463440, -110.383399963, -125.525375366,\\
-  -21650.402343750, 22544.750000000,  -20.000000000" )
-
-cmd.png("MR766_{0}_side.png", ray=1)""".format(condition))
-        f.write('\n\n')
-    f.close()
+        postamblef = open(script_postamble, 'r')
+        for line in postamblef:
+            if "__" in line:
+                line = line.replace("__", "_{0}_".format(condition))
+            f.write(line)
+        postamblef.close()
 
 
-MapDiffSeltoPDB("./results/diffsel/summary_ZKA64-meansitediffsel.csv", 
-                 './pymol_scripts/ZKA64_mean_sitediffsel.py', 
-                 map_type = 'site_diffsel',
-                 script_preamble = False,
-                 script_postamble = True,
-                 condition = 'ZKA64')
 
 
-MapDiffSeltoPDB("./results/diffsel/summary_ZKA185-meansitediffsel.csv", 
-                 './pymol_scripts/ZKA185_mean_sitediffsel.py', 
-                 map_type = 'site_diffsel',
-                 script_preamble = False,
-                 script_postamble = True,
-                 condition = 'ZKA185') 
+structures = ['5ire', '5u4w', '6co8']
 
-MapDiffSeltoPDB("./results/prefs/rescaled_prefs_entropy.csv", 
-                 './pymol_scripts/MR766_entropy.py', 
-                 map_type = 'entropy',
-                 colors = ['#fafafa', '#007713'],
-                 script_preamble = False,
-                 script_postamble = True,
-                 condition = 'entropy')
+for structure in structures: 
+    postamble_file = 'pymol_scripts/'+structure+'_postamble.txt'
+
+    MapDiffSeltoPDB("./results/diffsel/summary_ZKA64-meansitediffsel.csv", 
+                    './pymol_scripts/{0}_ZKA64_mean_sitediffsel.py'.format(structure), 
+                    map_type = 'site_diffsel',
+                    script_preamble = False,
+                    script_postamble = postamble_file,
+                    condition = "ZKA64")
+
+
+    MapDiffSeltoPDB("./results/diffsel/summary_ZKA185-meansitediffsel.csv", 
+                    './pymol_scripts/{0}_ZKA185_mean_sitediffsel.py'.format(structure), 
+                    map_type = 'site_diffsel',
+                    script_preamble = False,
+                    script_postamble = postamble_file,
+                    condition = "ZKA185") 
+
+    MapDiffSeltoPDB("./results/prefs/rescaled_prefs_entropy.csv", 
+                    './pymol_scripts/{0}_MR766_entropy.py'.format(structure), 
+                    map_type = 'entropy',
+                    colors = ['#fafafa', '#007713'],
+                    script_preamble = False,
+                    script_postamble = postamble_file,
+                    condition = "entropy")
 
 
