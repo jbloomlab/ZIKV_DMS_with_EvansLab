@@ -33,6 +33,8 @@ results/phylogenetics/*
 results/logoplots/*
 !results/logoplots/*.pdf
 
+!results/struct_props
+
 !results/summary
 
 sra_submission/ZIKV_tar

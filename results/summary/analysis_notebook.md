@@ -1,6 +1,6 @@
 
 <h1>Table of Contents<span class="tocSkip"></span></h1>
-<div class="toc"><ul class="toc-item"><li><span><a href="#Deep-mutational-scanning-of-ZIKV-E-protein" data-toc-modified-id="Deep-mutational-scanning-of-ZIKV-E-protein-1">Deep mutational scanning of ZIKV E protein</a></span><ul class="toc-item"><li><span><a href="#Set-up-for-analysis" data-toc-modified-id="Set-up-for-analysis-1.1">Set up for analysis</a></span></li><li><span><a href="#Process-deep-sequencing-data" data-toc-modified-id="Process-deep-sequencing-data-1.2">Process deep sequencing data</a></span></li><li><span><a href="#Amino-acid-preferences-under-functional-selection" data-toc-modified-id="Amino-acid-preferences-under-functional-selection-1.3">Amino-acid preferences under functional selection</a></span></li><li><span><a href="#Mutational-effects" data-toc-modified-id="Mutational-effects-1.4">Mutational effects</a></span></li><li><span><a href="#Phylogenetic-analyses-with-experimentally-informed-codon-models" data-toc-modified-id="Phylogenetic-analyses-with-experimentally-informed-codon-models-1.5">Phylogenetic analyses with experimentally informed codon models</a></span></li><li><span><a href="#Differential-selection" data-toc-modified-id="Differential-selection-1.6">Differential selection</a></span></li><li><span><a href="#Fraction-surviving" data-toc-modified-id="Fraction-surviving-1.7">Fraction surviving</a></span></li><li><span><a href="#Mutations-tested-by-Evans-lab" data-toc-modified-id="Mutations-tested-by-Evans-lab-1.8">Mutations tested by Evans lab</a></span></li><li><span><a href="#Choose-&quot;significant&quot;-antibody-escape-mutations-for-validation" data-toc-modified-id="Choose-&quot;significant&quot;-antibody-escape-mutations-for-validation-1.9">Choose "significant" antibody-escape mutations for validation</a></span></li><li><span><a href="#Figures-for-paper" data-toc-modified-id="Figures-for-paper-1.10">Figures for paper</a></span><ul class="toc-item"><li><span><a href="#Figures-about-library-and-selection" data-toc-modified-id="Figures-about-library-and-selection-1.10.1">Figures about library and selection</a></span></li><li><span><a href="#Logo-plots-of-mutational-effects-on-viral-growth" data-toc-modified-id="Logo-plots-of-mutational-effects-on-viral-growth-1.10.2">Logo plots of mutational effects on viral growth</a></span></li><li><span><a href="#Comparison-to-natural-evolution" data-toc-modified-id="Comparison-to-natural-evolution-1.10.3">Comparison to natural evolution</a></span></li><li><span><a href="#Antibody-escape" data-toc-modified-id="Antibody-escape-1.10.4">Antibody escape</a></span></li></ul></li></ul></li></ul></div>
+<div class="toc"><ul class="toc-item"><li><span><a href="#Deep-mutational-scanning-of-ZIKV-E-protein" data-toc-modified-id="Deep-mutational-scanning-of-ZIKV-E-protein-1">Deep mutational scanning of ZIKV E protein</a></span><ul class="toc-item"><li><span><a href="#Set-up-for-analysis" data-toc-modified-id="Set-up-for-analysis-1.1">Set up for analysis</a></span></li><li><span><a href="#Process-deep-sequencing-data" data-toc-modified-id="Process-deep-sequencing-data-1.2">Process deep sequencing data</a></span></li><li><span><a href="#Amino-acid-preferences-under-functional-selection" data-toc-modified-id="Amino-acid-preferences-under-functional-selection-1.3">Amino-acid preferences under functional selection</a></span></li><li><span><a href="#Mutational-effects" data-toc-modified-id="Mutational-effects-1.4">Mutational effects</a></span></li><li><span><a href="#Solvent-accessibility-and-secondary-structure" data-toc-modified-id="Solvent-accessibility-and-secondary-structure-1.5">Solvent accessibility and secondary structure</a></span></li><li><span><a href="#Phylogenetic-analyses-with-experimentally-informed-codon-models" data-toc-modified-id="Phylogenetic-analyses-with-experimentally-informed-codon-models-1.6">Phylogenetic analyses with experimentally informed codon models</a></span></li><li><span><a href="#Differential-selection" data-toc-modified-id="Differential-selection-1.7">Differential selection</a></span></li><li><span><a href="#Fraction-surviving" data-toc-modified-id="Fraction-surviving-1.8">Fraction surviving</a></span></li><li><span><a href="#Mutations-tested-by-Evans-lab" data-toc-modified-id="Mutations-tested-by-Evans-lab-1.9">Mutations tested by Evans lab</a></span></li><li><span><a href="#Choose-&quot;significant&quot;-antibody-escape-mutations-for-validation" data-toc-modified-id="Choose-&quot;significant&quot;-antibody-escape-mutations-for-validation-1.10">Choose "significant" antibody-escape mutations for validation</a></span></li><li><span><a href="#Figures-for-paper" data-toc-modified-id="Figures-for-paper-1.11">Figures for paper</a></span><ul class="toc-item"><li><span><a href="#Figures-about-library-and-selection" data-toc-modified-id="Figures-about-library-and-selection-1.11.1">Figures about library and selection</a></span></li><li><span><a href="#Logo-plots-of-mutational-effects-on-viral-growth" data-toc-modified-id="Logo-plots-of-mutational-effects-on-viral-growth-1.11.2">Logo plots of mutational effects on viral growth</a></span></li><li><span><a href="#Comparison-to-natural-evolution" data-toc-modified-id="Comparison-to-natural-evolution-1.11.3">Comparison to natural evolution</a></span></li><li><span><a href="#Antibody-escape" data-toc-modified-id="Antibody-escape-1.11.4">Antibody escape</a></span></li></ul></li></ul></li></ul></div>
 
 # Deep mutational scanning of ZIKV E protein
 Deep mutational scanning of ZIKV E from the MR766 strain.
@@ -47,8 +47,8 @@ print(f"Using dmslogo {dmslogo.__version__}")
 ```
 
     Using phydms 2.3.1
-    Using dms_tools2 2.4.10
-    Using dmslogo 0.2.2
+    Using dms_tools2 2.4.12
+    Using dmslogo 0.2.3
 
 
 Specify information about running analysis:
@@ -715,6 +715,284 @@ showPDF(os.path.join(logodir, 'unscaled_muteffects.pdf'))
 ![png](analysis_notebook_files/analysis_notebook_52_0.png)
 
 
+## Solvent accessibility and secondary structure
+We will also get the solvent accessibility and secondary structure for each site, calculated on two different PDB structures (*5ire* and *6co8*) using either all chains in the PDB or just a monomer (chain A).
+These have already been calculated using `dssp` and written to files; we get the values just for one monomer (chain A).
+
+We combine these measurements with two metrics for mutational tolerance: 
+ - site entropy
+ - number of effective amino acids
+each computed from the **unscaled** amino-acid preferences.
+
+
+```python
+struct_props_dir = os.path.join(resultsdir, 'struct_props')
+os.makedirs(struct_props_dir, exist_ok=True)
+
+dssp_runs = ['5ire', '6co8', '5ire_monomer', '6co8_monomer']
+
+dssp_df = (pandas.concat([dms_tools2.dssp.processDSSP(f"data/{f}.dssp", chain='A')
+                         .assign(pdb=f)
+                         for f in dssp_runs])
+           .merge(dms_tools2.prefs.prefsEntropy(unscaledprefs, dms_tools2.AAS))
+           [['site', 'entropy', 'neffective', 'pdb', 'RSA', 'SS_class']]
+           .melt(id_vars=['site', 'pdb', 'RSA', 'SS_class'],
+                 value_vars=['entropy', 'neffective'],
+                 var_name='mutational_tolerance_measure',
+                 value_name='mutational_tolerance')
+           )
+
+struct_props_csv = os.path.join(struct_props_dir, 'struct_props_mut_tol.csv')
+print(f"Writing data to {struct_props_csv}")
+dssp_df.to_csv(struct_props_csv, index=False)
+
+display(HTML(dssp_df.head().to_html(index=False)))
+```
+
+    Writing data to ./results/struct_props/struct_props_mut_tol.csv
+
+
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>site</th>
+      <th>pdb</th>
+      <th>RSA</th>
+      <th>SS_class</th>
+      <th>mutational_tolerance_measure</th>
+      <th>mutational_tolerance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>5ire</td>
+      <td>0.030457</td>
+      <td>loop</td>
+      <td>entropy</td>
+      <td>1.809948</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>6co8</td>
+      <td>0.005076</td>
+      <td>loop</td>
+      <td>entropy</td>
+      <td>1.809948</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>5ire_monomer</td>
+      <td>0.030457</td>
+      <td>loop</td>
+      <td>entropy</td>
+      <td>1.809948</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>6co8_monomer</td>
+      <td>0.005076</td>
+      <td>loop</td>
+      <td>entropy</td>
+      <td>1.809948</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>5ire</td>
+      <td>0.244526</td>
+      <td>loop</td>
+      <td>entropy</td>
+      <td>1.851241</td>
+    </tr>
+  </tbody>
+</table>
+
+
+Plot overall distribution of relative solvent accessibilities:
+
+
+```python
+p = (ggplot(dssp_df, aes('RSA')) +
+     geom_histogram() +
+     facet_wrap('~ pdb', nrow=1) +
+     scale_x_continuous(name='relative solvent accessibility', limits=(-0.05, 1.05)) +
+     ylab('number of sites') +
+     theme(figure_size=(2.5 * len(dssp_runs), 2))
+     )
+
+_ = p.draw()
+plotfile = os.path.join(struct_props_dir, 'rsa_distribution.pdf')
+print(f"Saving to {plotfile}")
+p.save(plotfile)
+```
+
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/stats/stat_bin.py:93: UserWarning: 'stat_bin()' using 'bins = 23'. Pick better value with 'binwidth'.
+      warn(msg.format(params['bins']))
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/layer.py:360: UserWarning: stat_bin : Removed 4 rows containing non-finite values.
+      data = self.stat.compute_layer(data, params, layout)
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/layer.py:449: UserWarning: geom_histogram : Removed 8 rows containing missing values.
+      self.data = self.geom.handle_na(self.data)
+
+
+    Saving to ./results/struct_props/rsa_distribution.pdf
+
+
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/ggplot.py:706: UserWarning: Saving 10.0 x 2 in image.
+      from_inches(height, units), units))
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/ggplot.py:707: UserWarning: Filename: ./results/struct_props/rsa_distribution.pdf
+      warn('Filename: {}'.format(filename))
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/stats/stat_bin.py:93: UserWarning: 'stat_bin()' using 'bins = 23'. Pick better value with 'binwidth'.
+      warn(msg.format(params['bins']))
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/layer.py:360: UserWarning: stat_bin : Removed 4 rows containing non-finite values.
+      data = self.stat.compute_layer(data, params, layout)
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/layer.py:449: UserWarning: geom_histogram : Removed 8 rows containing missing values.
+      self.data = self.geom.handle_na(self.data)
+
+
+
+![png](analysis_notebook_files/analysis_notebook_56_3.png)
+
+
+Plot secondary structure classes:
+
+
+```python
+p = (ggplot(dssp_df, aes('SS_class', fill='SS_class')) +
+     geom_bar() +
+     facet_wrap('~ pdb', nrow=1) +
+     xlab('secondary structure') +
+     ylab('number of sites') +
+     scale_fill_manual(values=PALETTE[1: ], name='secondary structure') +
+     theme(figure_size=(2.5 * len(dssp_runs), 2))
+     )
+
+_ = p.draw()
+plotfile = os.path.join(struct_props_dir, 'ss_distribution.pdf')
+print(f"Saving to {plotfile}")
+p.save(plotfile)
+```
+
+    Saving to ./results/struct_props/ss_distribution.pdf
+
+
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/ggplot.py:706: UserWarning: Saving 10.0 x 2 in image.
+      from_inches(height, units), units))
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/ggplot.py:707: UserWarning: Filename: ./results/struct_props/ss_distribution.pdf
+      warn('Filename: {}'.format(filename))
+
+
+
+![png](analysis_notebook_files/analysis_notebook_58_2.png)
+
+
+Distribution of mutational tolerance values:
+
+
+```python
+p = (ggplot(dssp_df, aes('mutational_tolerance')) +
+     geom_histogram() +
+     facet_wrap('~ mutational_tolerance_measure', nrow=1, scales='free_x') +
+     scale_x_continuous(name='mutational tolerance') +
+     ylab('number of sites') +
+     theme(figure_size=(5, 2))
+     )
+
+_ = p.draw()
+plotfile = os.path.join(struct_props_dir, 'tolerance_distribution.pdf')
+print(f"Saving to {plotfile}")
+p.save(plotfile)
+```
+
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/stats/stat_bin.py:93: UserWarning: 'stat_bin()' using 'bins = 25'. Pick better value with 'binwidth'.
+      warn(msg.format(params['bins']))
+
+
+    Saving to ./results/struct_props/tolerance_distribution.pdf
+
+
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/ggplot.py:706: UserWarning: Saving 5 x 2 in image.
+      from_inches(height, units), units))
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/ggplot.py:707: UserWarning: Filename: ./results/struct_props/tolerance_distribution.pdf
+      warn('Filename: {}'.format(filename))
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/stats/stat_bin.py:93: UserWarning: 'stat_bin()' using 'bins = 25'. Pick better value with 'binwidth'.
+      warn(msg.format(params['bins']))
+
+
+
+![png](analysis_notebook_files/analysis_notebook_60_3.png)
+
+
+Correlation of mutational tolerance and solvent accessibility:
+
+
+```python
+p = (ggplot(dssp_df, aes('RSA', 'mutational_tolerance')) +
+     geom_point(alpha=0.3) +
+     geom_smooth(method='lm', color='blue', fill='blue', alpha=0.25) +
+     facet_grid('mutational_tolerance_measure ~ pdb', scales='free_y') +
+     scale_x_continuous(name='relative solvent accessibility', limits=(-0.05, 1.05)) +
+     ylab('mutational tolerance') +
+     theme(figure_size=(2.5 * len(dssp_runs), 5))
+     )
+
+_ = p.draw()
+plotfile = os.path.join(struct_props_dir, 'rsa_vs_tolerance.pdf')
+print(f"Saving to {plotfile}")
+p.save(plotfile)
+```
+
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/layer.py:449: UserWarning: geom_point : Removed 4 rows containing missing values.
+      self.data = self.geom.handle_na(self.data)
+
+
+    Saving to ./results/struct_props/rsa_vs_tolerance.pdf
+
+
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/ggplot.py:706: UserWarning: Saving 10.0 x 5 in image.
+      from_inches(height, units), units))
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/ggplot.py:707: UserWarning: Filename: ./results/struct_props/rsa_vs_tolerance.pdf
+      warn('Filename: {}'.format(filename))
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/layer.py:449: UserWarning: geom_point : Removed 4 rows containing missing values.
+      self.data = self.geom.handle_na(self.data)
+
+
+
+![png](analysis_notebook_files/analysis_notebook_62_3.png)
+
+
+Correlation of secondary structure and mutational tolerance:
+
+
+```python
+p = (ggplot(dssp_df, aes('SS_class', 'mutational_tolerance', fill='SS_class')) +
+     geom_boxplot() +
+     facet_grid('mutational_tolerance_measure ~ pdb', scales='free_y') +
+     xlab('secondary structure') +
+     ylab('mutational tolerance') +
+     scale_fill_manual(values=PALETTE[1: ]) +
+     theme(figure_size=(2.5 * len(dssp_runs), 5))
+     )
+
+_ = p.draw()
+plotfile = os.path.join(struct_props_dir, 'ss_vs_tolerance.pdf')
+print(f"Saving to {plotfile}")
+p.save(plotfile)
+```
+
+    Saving to ./results/struct_props/ss_vs_tolerance.pdf
+
+
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/ggplot.py:706: UserWarning: Saving 10.0 x 5 in image.
+      from_inches(height, units), units))
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/ggplot.py:707: UserWarning: Filename: ./results/struct_props/ss_vs_tolerance.pdf
+      warn('Filename: {}'.format(filename))
+
+
+
+![png](analysis_notebook_files/analysis_notebook_64_2.png)
+
+
 ## Phylogenetic analyses with experimentally informed codon models
 Now we perform phylogenetic analyses with experimentally informed codon models (ExpCM) that use the deep mutational scanning data (see [here](https://peerj.com/articles/3657/) for background on ExpCMs).
 
@@ -810,7 +1088,7 @@ showPDF(treefigfile)
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_60_0.png)
+![png](analysis_notebook_files/analysis_notebook_72_0.png)
 
 
 Now let's look at the result of the phylogenetic model comparison from the analysis.
@@ -953,7 +1231,7 @@ showPDF(os.path.join(logodir, 'rescaled_prefs.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_68_0.png)
+![png](analysis_notebook_files/analysis_notebook_80_0.png)
 
 
 ## Differential selection
@@ -1225,7 +1503,7 @@ showPDF([os.path.join(diffseldir, f'summary_{antibody}-positivesitediffselcorr.p
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_80_0.png)
+![png](analysis_notebook_files/analysis_notebook_92_0.png)
 
 
 Now we look at the positive differential selection for each antibody, taking the mean across the replicates.
@@ -1237,7 +1515,7 @@ showPDF(os.path.join(diffseldir, 'summary_meanpositivediffsel.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_82_0.png)
+![png](analysis_notebook_files/analysis_notebook_94_0.png)
 
 
 We also look at the total differential selection, including **negative** differential selection.
@@ -1250,7 +1528,7 @@ showPDF(os.path.join(diffseldir, 'summary_meantotaldiffsel.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_84_0.png)
+![png](analysis_notebook_files/analysis_notebook_96_0.png)
 
 
 Finally, we use [dms2_logoplot](https://jbloomlab.github.io/dms_tools2/dms2_logoplot.html) to make a logo plot of the across-replicate mean **positive** (note use of `--restrictdiffsel positive`) differential selection for each non-control antibody:
@@ -1281,7 +1559,7 @@ for antibody in diffsel_batch.query('group != "control-antibody"').group.unique(
 
 
 
-![png](analysis_notebook_files/analysis_notebook_86_1.png)
+![png](analysis_notebook_files/analysis_notebook_98_1.png)
 
 
     
@@ -1290,7 +1568,7 @@ for antibody in diffsel_batch.query('group != "control-antibody"').group.unique(
 
 
 
-![png](analysis_notebook_files/analysis_notebook_86_3.png)
+![png](analysis_notebook_files/analysis_notebook_98_3.png)
 
 
 ## Fraction surviving
@@ -1333,7 +1611,7 @@ showPDF([os.path.join(fracsurvivedir, f'summary_{antibody}-avgfracsurvivecorr.pd
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_92_0.png)
+![png](analysis_notebook_files/analysis_notebook_104_0.png)
 
 
 Here is the mean across replicates of each site's average fracsurvive:
@@ -1344,7 +1622,7 @@ showPDF(os.path.join(fracsurvivedir, 'summary_meanavgfracsurvive.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_94_0.png)
+![png](analysis_notebook_files/analysis_notebook_106_0.png)
 
 
 Finally, we use [dms2_logoplot](https://jbloomlab.github.io/dms_tools2/dms2_logoplot.html) to make a logo plot of the mean across-replicate fraction surviving for each non-control antibody:
@@ -1374,7 +1652,7 @@ for antibody in diffsel_batch.query('group != "control-antibody"').group.unique(
 
 
 
-![png](analysis_notebook_files/analysis_notebook_96_1.png)
+![png](analysis_notebook_files/analysis_notebook_108_1.png)
 
 
     
@@ -1383,7 +1661,7 @@ for antibody in diffsel_batch.query('group != "control-antibody"').group.unique(
 
 
 
-![png](analysis_notebook_files/analysis_notebook_96_3.png)
+![png](analysis_notebook_files/analysis_notebook_108_3.png)
 
 
 The results for fraction surviving look mostly similar to those for differential selection, but there are some differences, and it is probably worth considering which metric seems to better capture the real biology.
@@ -1578,7 +1856,7 @@ for scaling, df in [('rescaled', rescaledprefs),
 
 
 
-![png](analysis_notebook_files/analysis_notebook_103_1.png)
+![png](analysis_notebook_files/analysis_notebook_115_1.png)
 
 
     
@@ -1587,7 +1865,7 @@ for scaling, df in [('rescaled', rescaledprefs),
 
 
 
-![png](analysis_notebook_files/analysis_notebook_103_3.png)
+![png](analysis_notebook_files/analysis_notebook_115_3.png)
 
 
 The logo plots above show the amino-acid preferences, although it is sometimes hard to see the relative effects of mutations with small preferences.
@@ -1631,7 +1909,7 @@ _ = (
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_107_0.png)
+![png](analysis_notebook_files/analysis_notebook_119_0.png)
 
 
 Now we get the effects of the experimentall characterized mutations:
@@ -1825,7 +2103,7 @@ _ = (
 
 
 
-![png](analysis_notebook_files/analysis_notebook_111_1.png)
+![png](analysis_notebook_files/analysis_notebook_123_1.png)
 
 
 The histogram above suggests that the correlation between the experiments and deep mutational scanning is OK. 
@@ -2112,7 +2390,7 @@ for antibody in antibodies:
 
 
 
-![png](analysis_notebook_files/analysis_notebook_124_1.png)
+![png](analysis_notebook_files/analysis_notebook_136_1.png)
 
 
     
@@ -2123,7 +2401,7 @@ for antibody in antibodies:
 
 
 
-![png](analysis_notebook_files/analysis_notebook_124_3.png)
+![png](analysis_notebook_files/analysis_notebook_136_3.png)
 
 
 Based on the above, I would suggest the following mutations to test:
@@ -2264,7 +2542,7 @@ showPDF(mutation_sampling)
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_131_0.png)
+![png](analysis_notebook_files/analysis_notebook_143_0.png)
 
 
 And a plot of selection on different types of mutations:
@@ -2283,7 +2561,7 @@ showPDF(codon_mut_types)
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_133_0.png)
+![png](analysis_notebook_files/analysis_notebook_145_0.png)
 
 
 We've already made a plot of replicate-replicate correlations in the measured mutational effects (amino-acid preferences), copy it here and show it:
@@ -2296,7 +2574,7 @@ showPDF(prefs_replicate_corr, width=300)
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_135_0.png)
+![png](analysis_notebook_files/analysis_notebook_147_0.png)
 
 
 ### Logo plots of mutational effects on viral growth
@@ -2310,7 +2588,7 @@ showPDF(unscaled_prefs)
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_137_0.png)
+![png](analysis_notebook_files/analysis_notebook_149_0.png)
 
 
 And the mutational effects on viral growth:
@@ -2323,7 +2601,7 @@ showPDF(unscaled_muteffects)
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_139_0.png)
+![png](analysis_notebook_files/analysis_notebook_151_0.png)
 
 
 ### Comparison to natural evolution
@@ -2338,7 +2616,7 @@ showPDF(tree)
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_142_0.png)
+![png](analysis_notebook_files/analysis_notebook_154_0.png)
 
 
 Show natural amino acid frequencies in this alignment:
@@ -2360,7 +2638,7 @@ showPDF(os.path.join(figsdir, 'aafreqs_prefs.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_144_0.png)
+![png](analysis_notebook_files/analysis_notebook_156_0.png)
 
 
 ### Antibody escape
@@ -2410,7 +2688,7 @@ fig.savefig(antibodyzoom)
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_146_0.png)
+![png](analysis_notebook_files/analysis_notebook_158_0.png)
 
 
 
