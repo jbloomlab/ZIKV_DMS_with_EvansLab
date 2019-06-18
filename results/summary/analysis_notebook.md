@@ -46,8 +46,14 @@ import dmslogo
 print(f"Using dmslogo {dmslogo.__version__}")
 ```
 
-    Using phydms 2.3.1
-    Using dms_tools2 2.4.12
+    Using phydms 2.3.2
+    Using dms_tools2 2.4.14
+
+
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/matplotlib/font_manager.py:232: UserWarning: Matplotlib is building the font cache using fc-list. This may take a moment.
+      'Matplotlib is building the font cache using fc-list. '
+
+
     Using dmslogo 0.2.3
 
 
@@ -578,15 +584,29 @@ wt_aas = pandas.DataFrame.from_records(
 wtoverlayfile = os.path.join(logodir, 'wt_overlay.csv')
 wt_aas.to_csv(wtoverlayfile, index=False)
 
+# get secondary structure to use as overlay
+dssp_df = dms_tools2.dssp.processDSSP('data/5ire.dssp', 'A')
+ss_file = os.path.join(logodir, 'secondarystructure.csv')
+(dssp_df
+  [['site', 'SS_class']]
+ .rename(columns={'SS_class': 'SS'})
+ .to_csv(ss_file)
+ )
+
+logoplot = os.path.join(logodir, 'unscaled_prefs.pdf')
+
 log = ! dms2_logoplot \
         --prefs {unscaledprefsfile} \
         --name unscaled \
         --outdir {logodir} \
         --nperline 84 \
         --overlay1 {wtoverlayfile} wildtype wildtype \
+        --overlay2 data/domains.csv DOM domain \
+        --overlay3 {ss_file} SS "secondary structure" \
+        --letterheight 1.1 \
         --use_existing {use_existing}
 
-showPDF(os.path.join(logodir, 'unscaled_prefs.pdf'))
+showPDF(logoplot)
 ```
 
 
@@ -705,7 +725,10 @@ log = ! dms2_logoplot \
         --outdir {logodir} \
         --nperline 84 \
         --overlay1 {wtoverlayfile} wildtype wildtype \
+        --overlay2 data/domains.csv DOM domain \
+        --overlay3 {ss_file} SS "secondary structure" \
         --scalebar 6.64 "100-fold change (log scale)" \
+        --letterheight 0.8 \
         --use_existing {use_existing}
 
 showPDF(os.path.join(logodir, 'unscaled_muteffects.pdf'))

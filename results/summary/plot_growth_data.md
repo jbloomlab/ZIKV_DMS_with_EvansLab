@@ -16,7 +16,7 @@ sessionInfo()
 ```
 
     ── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──
-    ✔ ggplot2 3.1.1     ✔ purrr   0.2.5
+    ✔ ggplot2 3.2.0     ✔ purrr   0.2.5
     ✔ tibble  1.4.2     ✔ dplyr   0.7.8
     ✔ tidyr   0.8.1     ✔ stringr 1.3.1
     ✔ readr   1.1.1     ✔ forcats 0.3.0
@@ -54,21 +54,21 @@ sessionInfo()
     other attached packages:
      [1] IRdisplay_0.7.0 cowplot_0.9.3   forcats_0.3.0   stringr_1.3.1  
      [5] dplyr_0.7.8     purrr_0.2.5     readr_1.1.1     tidyr_0.8.1    
-     [9] tibble_1.4.2    ggplot2_3.1.1   tidyverse_1.2.1
+     [9] tibble_1.4.2    ggplot2_3.2.0   tidyverse_1.2.1
     
     loaded via a namespace (and not attached):
      [1] pbdZMQ_0.3-3     tidyselect_0.2.4 repr_0.19.1.9000 haven_1.1.2     
      [5] lattice_0.20-35  colorspace_1.3-2 htmltools_0.3.6  base64enc_0.1-3 
      [9] rlang_0.3.0.1    pillar_1.3.0     glue_1.3.0       withr_2.1.2     
     [13] modelr_0.1.2     readxl_1.1.0     bindrcpp_0.2.2   uuid_0.1-2      
-    [17] bindr_0.1.1      plyr_1.8.4       munsell_0.5.0    gtable_0.2.0    
-    [21] cellranger_1.1.0 rvest_0.3.2      evaluate_0.11    broom_0.5.0     
-    [25] Rcpp_1.0.0       backports_1.1.2  scales_1.0.0     IRkernel_0.8.12 
-    [29] jsonlite_1.6     hms_0.4.2        digest_0.6.18    stringi_1.2.4   
-    [33] grid_3.5.1       cli_1.0.0        tools_3.5.1      magrittr_1.5    
-    [37] lazyeval_0.2.1   crayon_1.3.4     pkgconfig_2.0.1  xml2_1.2.0      
-    [41] lubridate_1.7.4  assertthat_0.2.0 httr_1.3.1       rstudioapi_0.7  
-    [45] R6_2.2.2         nlme_3.1-137     compiler_3.5.1  
+    [17] bindr_0.1.1      munsell_0.5.0    gtable_0.2.0     cellranger_1.1.0
+    [21] rvest_0.3.2      evaluate_0.11    broom_0.5.0      Rcpp_1.0.0      
+    [25] backports_1.1.2  scales_1.0.0     IRkernel_0.8.12  jsonlite_1.6    
+    [29] hms_0.4.2        digest_0.6.18    stringi_1.2.4    grid_3.5.1      
+    [33] cli_1.0.0        tools_3.5.1      magrittr_1.5     lazyeval_0.2.1  
+    [37] crayon_1.3.4     pkgconfig_2.0.1  xml2_1.2.0       lubridate_1.7.4 
+    [41] assertthat_0.2.0 httr_1.3.1       rstudioapi_0.7   R6_2.2.2        
+    [45] nlme_3.1-137     compiler_3.5.1  
 
 
 Color-blind palette:

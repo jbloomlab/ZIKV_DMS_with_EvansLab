@@ -1,0 +1,505 @@
+site,DOM
+1,domain I
+2,domain I
+3,domain I
+4,domain I
+5,domain I
+6,domain I
+7,domain I
+8,domain I
+9,domain I
+10,domain I
+11,domain I
+12,domain I
+13,domain I
+14,domain I
+15,domain I
+16,domain I
+17,domain I
+18,domain I
+19,domain I
+20,domain I
+21,domain I
+22,domain I
+23,domain I
+24,domain I
+25,domain I
+26,domain I
+27,domain I
+28,domain I
+29,domain I
+30,domain I
+31,domain I
+32,domain I
+33,domain I
+34,domain I
+35,domain I
+36,domain I
+37,domain I
+38,domain I
+39,domain I
+40,domain I
+41,domain I
+42,domain I
+43,domain I
+44,domain I
+45,domain I
+46,domain I
+47,domain I
+48,domain I
+49,domain I
+50,domain I
+51,domain I
+52,domain II
+53,domain II
+54,domain II
+55,domain II
+56,domain II
+57,domain II
+58,domain II
+59,domain II
+60,domain II
+61,domain II
+62,domain II
+63,domain II
+64,domain II
+65,domain II
+66,domain II
+67,domain II
+68,domain II
+69,domain II
+70,domain II
+71,domain II
+72,domain II
+73,domain II
+74,domain II
+75,domain II
+76,domain II
+77,domain II
+78,domain II
+79,domain II
+80,domain II
+81,domain II
+82,domain II
+83,domain II
+84,domain II
+85,domain II
+86,domain II
+87,domain II
+88,domain II
+89,domain II
+90,domain II
+91,domain II
+92,domain II
+93,domain II
+94,domain II
+95,domain II
+96,domain II
+97,domain II
+98,domain II
+99,domain II
+100,domain II
+101,domain II
+102,domain II
+103,domain II
+104,domain II
+105,domain II
+106,domain II
+107,domain II
+108,domain II
+109,domain II
+110,domain II
+111,domain II
+112,domain II
+113,domain II
+114,domain II
+115,domain II
+116,domain II
+117,domain II
+118,domain II
+119,domain II
+120,domain II
+121,domain II
+122,domain II
+123,domain II
+124,domain II
+125,domain II
+126,domain II
+127,domain II
+128,domain II
+129,domain II
+130,domain II
+131,domain II
+132,domain I
+133,domain I
+134,domain I
+135,domain I
+136,domain I
+137,domain I
+138,domain I
+139,domain I
+140,domain I
+141,domain I
+142,domain I
+143,domain I
+144,domain I
+145,domain I
+146,domain I
+147,domain I
+148,domain I
+149,domain I
+150,domain I
+151,domain I
+152,domain I
+153,domain I
+154,domain I
+155,domain I
+156,domain I
+157,domain I
+158,domain I
+159,domain I
+160,domain I
+161,domain I
+162,domain I
+163,domain I
+164,domain I
+165,domain I
+166,domain I
+167,domain I
+168,domain I
+169,domain I
+170,domain I
+171,domain I
+172,domain I
+173,domain I
+174,domain I
+175,domain I
+176,domain I
+177,domain I
+178,domain I
+179,domain I
+180,domain I
+181,domain I
+182,domain I
+183,domain I
+184,domain I
+185,domain I
+186,domain I
+187,domain I
+188,domain I
+189,domain I
+190,domain I
+191,domain I
+192,domain I
+193,domain II
+194,domain II
+195,domain II
+196,domain II
+197,domain II
+198,domain II
+199,domain II
+200,domain II
+201,domain II
+202,domain II
+203,domain II
+204,domain II
+205,domain II
+206,domain II
+207,domain II
+208,domain II
+209,domain II
+210,domain II
+211,domain II
+212,domain II
+213,domain II
+214,domain II
+215,domain II
+216,domain II
+217,domain II
+218,domain II
+219,domain II
+220,domain II
+221,domain II
+222,domain II
+223,domain II
+224,domain II
+225,domain II
+226,domain II
+227,domain II
+228,domain II
+229,domain II
+230,domain II
+231,domain II
+232,domain II
+233,domain II
+234,domain II
+235,domain II
+236,domain II
+237,domain II
+238,domain II
+239,domain II
+240,domain II
+241,domain II
+242,domain II
+243,domain II
+244,domain II
+245,domain II
+246,domain II
+247,domain II
+248,domain II
+249,domain II
+250,domain II
+251,domain II
+252,domain II
+253,domain II
+254,domain II
+255,domain II
+256,domain II
+257,domain II
+258,domain II
+259,domain II
+260,domain II
+261,domain II
+262,domain II
+263,domain II
+264,domain II
+265,domain II
+266,domain II
+267,domain II
+268,domain II
+269,domain II
+270,domain II
+271,domain II
+272,domain II
+273,domain II
+274,domain II
+275,domain II
+276,domain II
+277,domain II
+278,domain II
+279,domain II
+280,domain I
+281,domain I
+282,domain I
+283,domain I
+284,domain I
+285,domain I
+286,domain I
+287,domain I
+288,domain I
+289,domain I
+290,domain I
+291,domain I
+292,domain I
+293,domain I
+294,domain I
+295,domain I
+296,domain III
+297,domain III
+298,domain III
+299,domain III
+300,domain III
+301,domain III
+302,domain III
+303,domain III
+304,domain III
+305,domain III
+306,domain III
+307,domain III
+308,domain III
+309,domain III
+310,domain III
+311,domain III
+312,domain III
+313,domain III
+314,domain III
+315,domain III
+316,domain III
+317,domain III
+318,domain III
+319,domain III
+320,domain III
+321,domain III
+322,domain III
+323,domain III
+324,domain III
+325,domain III
+326,domain III
+327,domain III
+328,domain III
+329,domain III
+330,domain III
+331,domain III
+332,domain III
+333,domain III
+334,domain III
+335,domain III
+336,domain III
+337,domain III
+338,domain III
+339,domain III
+340,domain III
+341,domain III
+342,domain III
+343,domain III
+344,domain III
+345,domain III
+346,domain III
+347,domain III
+348,domain III
+349,domain III
+350,domain III
+351,domain III
+352,domain III
+353,domain III
+354,domain III
+355,domain III
+356,domain III
+357,domain III
+358,domain III
+359,domain III
+360,domain III
+361,domain III
+362,domain III
+363,domain III
+364,domain III
+365,domain III
+366,domain III
+367,domain III
+368,domain III
+369,domain III
+370,domain III
+371,domain III
+372,domain III
+373,domain III
+374,domain III
+375,domain III
+376,domain III
+377,domain III
+378,domain III
+379,domain III
+380,domain III
+381,domain III
+382,domain III
+383,domain III
+384,domain III
+385,domain III
+386,domain III
+387,domain III
+388,domain III
+389,domain III
+390,domain III
+391,domain III
+392,domain III
+393,domain III
+394,domain III
+395,domain III
+396,domain III
+397,domain III
+398,domain III
+399,domain III
+400,domain III
+401,domain III
+402,domain III
+403,domain III
+404,domain III
+405,domain III
+406,stem region
+407,stem region
+408,stem region
+409,stem region
+410,stem region
+411,stem region
+412,stem region
+413,stem region
+414,stem region
+415,stem region
+416,stem region
+417,stem region
+418,stem region
+419,stem region
+420,stem region
+421,stem region
+422,stem region
+423,stem region
+424,stem region
+425,stem region
+426,stem region
+427,stem region
+428,stem region
+429,stem region
+430,stem region
+431,stem region
+432,stem region
+433,stem region
+434,stem region
+435,stem region
+436,stem region
+437,stem region
+438,stem region
+439,stem region
+440,stem region
+441,stem region
+442,stem region
+443,stem region
+444,stem region
+445,stem region
+446,stem region
+447,stem region
+448,stem region
+449,stem region
+450,stem region
+451,stem region
+452,stem region
+453,stem region
+454,transmembrane
+455,transmembrane
+456,transmembrane
+457,transmembrane
+458,transmembrane
+459,transmembrane
+460,transmembrane
+461,transmembrane
+462,transmembrane
+463,transmembrane
+464,transmembrane
+465,transmembrane
+466,transmembrane
+467,transmembrane
+468,transmembrane
+469,transmembrane
+470,transmembrane
+471,transmembrane
+472,transmembrane
+473,transmembrane
+474,transmembrane
+475,transmembrane
+476,transmembrane
+477,transmembrane
+478,transmembrane
+479,transmembrane
+480,transmembrane
+481,transmembrane
+482,transmembrane
+483,transmembrane
+484,transmembrane
+485,transmembrane
+486,transmembrane
+487,transmembrane
+488,transmembrane
+489,transmembrane
+490,transmembrane
+491,transmembrane
+492,transmembrane
+493,transmembrane
+494,transmembrane
+495,transmembrane
+496,transmembrane
+497,transmembrane
+498,transmembrane
+499,transmembrane
+500,transmembrane
+501,transmembrane
+502,transmembrane
+503,transmembrane
+504,transmembrane
