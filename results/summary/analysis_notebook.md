@@ -599,11 +599,11 @@ log = ! dms2_logoplot \
         --prefs {unscaledprefsfile} \
         --name unscaled \
         --outdir {logodir} \
-        --nperline 84 \
+        --nperline 101 \
         --overlay1 {wtoverlayfile} wildtype wildtype \
         --overlay2 data/domains.csv DOM domain \
         --overlay3 {ss_file} SS "secondary structure" \
-        --letterheight 1.1 \
+        --letterheight 1.2 \
         --use_existing {use_existing}
 
 showPDF(logoplot)
@@ -723,12 +723,12 @@ log = ! dms2_logoplot \
         --muteffects {muteffectsfile} \
         --name unscaled \
         --outdir {logodir} \
-        --nperline 84 \
+        --nperline 101 \
         --overlay1 {wtoverlayfile} wildtype wildtype \
         --overlay2 data/domains.csv DOM domain \
         --overlay3 {ss_file} SS "secondary structure" \
 #        --scalebar 6.64 "100-fold change (log scale)" \
-        --letterheight 0.8 \
+        --letterheight 0.75 \
         --use_existing {use_existing}
 
 showPDF(os.path.join(logodir, 'unscaled_muteffects.pdf'))
@@ -1245,7 +1245,7 @@ log = ! dms2_logoplot \
         --prefs {rescaledprefsfile} \
         --name rescaled \
         --outdir {logodir} \
-        --nperline 84 \
+        --nperline 101 \
         --overlay1 {wtoverlayfile} wildtype wildtype \
         --ignore_extracols yes \
         --use_existing {use_existing}
@@ -1568,7 +1568,7 @@ for antibody in diffsel_batch.query('group != "control-antibody"').group.unique(
         --name {antibody} \
         --diffsel {diffselfile} \
         --restrictdiffsel positive \
-        --nperline 84 \
+        --nperline 101 \
         --overlay1 {wtoverlayfile} wildtype wildtype \
         --scalebar 10 "diffsel = 10" \
         --underlay yes \
@@ -1661,7 +1661,7 @@ for antibody in diffsel_batch.query('group != "control-antibody"').group.unique(
         --outdir {logodir} \
         --name {antibody} \
         --fracsurvive {fracsurvivefile} \
-        --nperline 84 \
+        --nperline 101 \
         --overlay1 {wtoverlayfile} wildtype wildtype \
         --scalebar 1 "fracsurvive = 1" \
         --underlay yes \
@@ -2654,7 +2654,7 @@ log = ! dms2_logoplot \
         --prefs {aafreqsfile} \
         --name aafreqs \
         --outdir {figsdir} \
-        --nperline 84 \
+        --nperline 101 \
         --overlay1 {wtoverlayfile} wildtype wildtype 
 
 showPDF(os.path.join(figsdir, 'aafreqs_prefs.pdf'))
