@@ -727,7 +727,7 @@ log = ! dms2_logoplot \
         --overlay1 {wtoverlayfile} wildtype wildtype \
         --overlay2 data/domains.csv DOM domain \
         --overlay3 {ss_file} SS "secondary structure" \
-        --scalebar 6.64 "100-fold change (log scale)" \
+#        --scalebar 6.64 "100-fold change (log scale)" \
         --letterheight 0.8 \
         --use_existing {use_existing}
 
