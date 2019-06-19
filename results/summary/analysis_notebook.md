@@ -23,6 +23,7 @@ warnings.simplefilter('ignore') # ignore warnings that clutter output
 
 import numpy
 import pandas
+import scipy
 import Bio.SeqIO
 import Bio.Phylo
 from IPython.display import display, HTML
@@ -1016,6 +1017,52 @@ p.save(plotfile)
 ![png](analysis_notebook_files/analysis_notebook_64_2.png)
 
 
+For the paper, we will make a figure showing just the correlation for 5ire monomer versus number of effective amino acids:
+
+
+```python
+dssp_df_fig = dssp_df.query('pdb == "5ire_monomer" & mutational_tolerance_measure == "neffective"')
+
+corr = scipy.stats.pearsonr(dssp_df_fig['RSA'], dssp_df_fig['mutational_tolerance'])
+if corr[1] < 1e-10:
+    corr_str = f"R = {corr[0]:.2f}\nP < 10$^{{-10}}$"
+else:
+    corr_str = f"R = {corr[0]:.2f}\nP = {corr[1]:.1g}"
+
+p = (ggplot(dssp_df_fig, aes('RSA', 'mutational_tolerance')) +
+     geom_point(alpha=0.25) +
+     geom_smooth(method='lm', color='blue', fill='blue', alpha=0.25) +
+     scale_x_continuous(name='relative solvent accessibility', limits=(-0.01, 1.01)) +
+     ylab('mutational tolerance') +
+     theme(figure_size=(2.75, 2.75)) +
+     annotate("text", x=1.01, y=18, label=corr_str, ha='right', size=10, color='blue')
+     )
+
+_ = p.draw()
+plotfile = os.path.join(struct_props_dir, 'rsa_vs_tolerance_fig.pdf')
+print(f"Saving to {plotfile}")
+p.save(plotfile)
+```
+
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/layer.py:449: UserWarning: geom_point : Removed 1 rows containing missing values.
+      self.data = self.geom.handle_na(self.data)
+
+
+    Saving to ./results/struct_props/rsa_vs_tolerance_fig.pdf
+
+
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/ggplot.py:706: UserWarning: Saving 2.75 x 2.75 in image.
+      from_inches(height, units), units))
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/ggplot.py:707: UserWarning: Filename: ./results/struct_props/rsa_vs_tolerance_fig.pdf
+      warn('Filename: {}'.format(filename))
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/layer.py:449: UserWarning: geom_point : Removed 1 rows containing missing values.
+      self.data = self.geom.handle_na(self.data)
+
+
+
+![png](analysis_notebook_files/analysis_notebook_66_3.png)
+
+
 ## Phylogenetic analyses with experimentally informed codon models
 Now we perform phylogenetic analyses with experimentally informed codon models (ExpCM) that use the deep mutational scanning data (see [here](https://peerj.com/articles/3657/) for background on ExpCMs).
 
@@ -1111,7 +1158,7 @@ showPDF(treefigfile)
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_72_0.png)
+![png](analysis_notebook_files/analysis_notebook_74_0.png)
 
 
 Now let's look at the result of the phylogenetic model comparison from the analysis.
@@ -1254,7 +1301,7 @@ showPDF(os.path.join(logodir, 'rescaled_prefs.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_80_0.png)
+![png](analysis_notebook_files/analysis_notebook_82_0.png)
 
 
 ## Differential selection
@@ -1526,7 +1573,7 @@ showPDF([os.path.join(diffseldir, f'summary_{antibody}-positivesitediffselcorr.p
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_92_0.png)
+![png](analysis_notebook_files/analysis_notebook_94_0.png)
 
 
 Now we look at the positive differential selection for each antibody, taking the mean across the replicates.
@@ -1538,7 +1585,7 @@ showPDF(os.path.join(diffseldir, 'summary_meanpositivediffsel.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_94_0.png)
+![png](analysis_notebook_files/analysis_notebook_96_0.png)
 
 
 We also look at the total differential selection, including **negative** differential selection.
@@ -1551,7 +1598,7 @@ showPDF(os.path.join(diffseldir, 'summary_meantotaldiffsel.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_96_0.png)
+![png](analysis_notebook_files/analysis_notebook_98_0.png)
 
 
 Finally, we use [dms2_logoplot](https://jbloomlab.github.io/dms_tools2/dms2_logoplot.html) to make a logo plot of the across-replicate mean **positive** (note use of `--restrictdiffsel positive`) differential selection for each non-control antibody:
@@ -1582,7 +1629,7 @@ for antibody in diffsel_batch.query('group != "control-antibody"').group.unique(
 
 
 
-![png](analysis_notebook_files/analysis_notebook_98_1.png)
+![png](analysis_notebook_files/analysis_notebook_100_1.png)
 
 
     
@@ -1591,7 +1638,7 @@ for antibody in diffsel_batch.query('group != "control-antibody"').group.unique(
 
 
 
-![png](analysis_notebook_files/analysis_notebook_98_3.png)
+![png](analysis_notebook_files/analysis_notebook_100_3.png)
 
 
 ## Fraction surviving
@@ -1634,7 +1681,7 @@ showPDF([os.path.join(fracsurvivedir, f'summary_{antibody}-avgfracsurvivecorr.pd
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_104_0.png)
+![png](analysis_notebook_files/analysis_notebook_106_0.png)
 
 
 Here is the mean across replicates of each site's average fracsurvive:
@@ -1645,7 +1692,7 @@ showPDF(os.path.join(fracsurvivedir, 'summary_meanavgfracsurvive.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_106_0.png)
+![png](analysis_notebook_files/analysis_notebook_108_0.png)
 
 
 Finally, we use [dms2_logoplot](https://jbloomlab.github.io/dms_tools2/dms2_logoplot.html) to make a logo plot of the mean across-replicate fraction surviving for each non-control antibody:
@@ -1675,7 +1722,7 @@ for antibody in diffsel_batch.query('group != "control-antibody"').group.unique(
 
 
 
-![png](analysis_notebook_files/analysis_notebook_108_1.png)
+![png](analysis_notebook_files/analysis_notebook_110_1.png)
 
 
     
@@ -1684,7 +1731,7 @@ for antibody in diffsel_batch.query('group != "control-antibody"').group.unique(
 
 
 
-![png](analysis_notebook_files/analysis_notebook_108_3.png)
+![png](analysis_notebook_files/analysis_notebook_110_3.png)
 
 
 The results for fraction surviving look mostly similar to those for differential selection, but there are some differences, and it is probably worth considering which metric seems to better capture the real biology.
@@ -1879,7 +1926,7 @@ for scaling, df in [('rescaled', rescaledprefs),
 
 
 
-![png](analysis_notebook_files/analysis_notebook_115_1.png)
+![png](analysis_notebook_files/analysis_notebook_117_1.png)
 
 
     
@@ -1888,7 +1935,7 @@ for scaling, df in [('rescaled', rescaledprefs),
 
 
 
-![png](analysis_notebook_files/analysis_notebook_115_3.png)
+![png](analysis_notebook_files/analysis_notebook_117_3.png)
 
 
 The logo plots above show the amino-acid preferences, although it is sometimes hard to see the relative effects of mutations with small preferences.
@@ -1932,7 +1979,7 @@ _ = (
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_119_0.png)
+![png](analysis_notebook_files/analysis_notebook_121_0.png)
 
 
 Now we get the effects of the experimentall characterized mutations:
@@ -2126,7 +2173,7 @@ _ = (
 
 
 
-![png](analysis_notebook_files/analysis_notebook_123_1.png)
+![png](analysis_notebook_files/analysis_notebook_125_1.png)
 
 
 The histogram above suggests that the correlation between the experiments and deep mutational scanning is OK. 
@@ -2413,7 +2460,7 @@ for antibody in antibodies:
 
 
 
-![png](analysis_notebook_files/analysis_notebook_136_1.png)
+![png](analysis_notebook_files/analysis_notebook_138_1.png)
 
 
     
@@ -2424,7 +2471,7 @@ for antibody in antibodies:
 
 
 
-![png](analysis_notebook_files/analysis_notebook_136_3.png)
+![png](analysis_notebook_files/analysis_notebook_138_3.png)
 
 
 Based on the above, I would suggest the following mutations to test:
@@ -2565,7 +2612,7 @@ showPDF(mutation_sampling)
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_143_0.png)
+![png](analysis_notebook_files/analysis_notebook_145_0.png)
 
 
 And a plot of selection on different types of mutations:
@@ -2584,7 +2631,7 @@ showPDF(codon_mut_types)
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_145_0.png)
+![png](analysis_notebook_files/analysis_notebook_147_0.png)
 
 
 We've already made a plot of replicate-replicate correlations in the measured mutational effects (amino-acid preferences), copy it here and show it:
@@ -2597,7 +2644,7 @@ showPDF(prefs_replicate_corr, width=300)
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_147_0.png)
+![png](analysis_notebook_files/analysis_notebook_149_0.png)
 
 
 ### Logo plots of mutational effects on viral growth
@@ -2611,7 +2658,7 @@ showPDF(unscaled_prefs)
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_149_0.png)
+![png](analysis_notebook_files/analysis_notebook_151_0.png)
 
 
 And the mutational effects on viral growth:
@@ -2624,7 +2671,7 @@ showPDF(unscaled_muteffects)
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_151_0.png)
+![png](analysis_notebook_files/analysis_notebook_153_0.png)
 
 
 ### Comparison to natural evolution
@@ -2639,7 +2686,7 @@ showPDF(tree)
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_154_0.png)
+![png](analysis_notebook_files/analysis_notebook_156_0.png)
 
 
 Show natural amino acid frequencies in this alignment:
@@ -2655,13 +2702,66 @@ log = ! dms2_logoplot \
         --name aafreqs \
         --outdir {figsdir} \
         --nperline 101 \
-        --overlay1 {wtoverlayfile} wildtype wildtype 
+        --overlay1 {wtoverlayfile} wildtype wildtype \
+        --overlay2 data/domains.csv DOM domain \
+        --overlay3 {ss_file} SS "secondary structure" \
 
 showPDF(os.path.join(figsdir, 'aafreqs_prefs.pdf'))
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_156_0.png)
+![png](analysis_notebook_files/analysis_notebook_158_0.png)
+
+
+Overall correlation of amino-acid preferences and natural frequencies:
+
+
+```python
+prefs_freqs = (
+    pandas.read_csv(unscaledprefsfile)
+    .melt(id_vars='site', var_name='amino acid', value_name='preference')
+    .merge(aafreqs.melt(id_vars='site', var_name='amino acid', value_name='frequency'))
+    )
+
+corr = scipy.stats.pearsonr(prefs_freqs['preference'],
+                            prefs_freqs['frequency'])
+if corr[1] < 1e-10:
+    corr_str = f"R = {corr[0]:.2f}\nP < 10$^{{-10}}$"
+else:
+    corr_str = f"R = {corr[0]:.2f}\nP = {corr[1]:.1g}"
+
+p = (ggplot(prefs_freqs, aes('preference', 'frequency')) +
+     geom_point(alpha=0.2) +
+     geom_smooth(method='lm', color='blue', fill='blue', alpha=0.25) +
+     scale_x_continuous(name='preference in experiments', limits=(0, 1)) +
+     scale_y_continuous(name='frequency in nature', limits=(0, 1)) +
+     theme(figure_size=(2.75, 2.75)) +
+     annotate("text", x=1, y=0.5, label=corr_str, ha='right', size=10, color='blue')
+     )
+
+_ = p.draw()
+plotfile = os.path.join(figsdir, 'pref_vs_freq_fig.pdf')
+print(f"Saving to {plotfile}")
+p.save(plotfile)
+```
+
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/layer.py:449: UserWarning: geom_smooth : Removed 20 rows containing missing values.
+      self.data = self.geom.handle_na(self.data)
+
+
+    Saving to ./results/figures/pref_vs_freq_fig.pdf
+
+
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/ggplot.py:706: UserWarning: Saving 2.75 x 2.75 in image.
+      from_inches(height, units), units))
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/ggplot.py:707: UserWarning: Filename: ./results/figures/pref_vs_freq_fig.pdf
+      warn('Filename: {}'.format(filename))
+    /fh/fast/bloom_j/software/conda/envs/BloomLab_v2/lib/python3.6/site-packages/plotnine/layer.py:449: UserWarning: geom_smooth : Removed 20 rows containing missing values.
+      self.data = self.geom.handle_na(self.data)
+
+
+
+![png](analysis_notebook_files/analysis_notebook_160_3.png)
 
 
 ### Antibody escape
@@ -2711,7 +2811,7 @@ fig.savefig(antibodyzoom)
 ```
 
 
-![png](analysis_notebook_files/analysis_notebook_158_0.png)
+![png](analysis_notebook_files/analysis_notebook_162_0.png)
 
 
 
