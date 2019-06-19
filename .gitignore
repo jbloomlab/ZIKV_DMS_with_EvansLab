@@ -37,4 +37,6 @@ results/logoplots/*
 
 !results/summary
 
+!results/figures
+
 sra_submission/ZIKV_tar
