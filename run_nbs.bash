@@ -7,7 +7,7 @@ RESULTSDIR="results/summary"
 mkdir -p $RESULTSDIR
 
 declare -a nbs=(
-                "analysis_notebook.ipynb"
+#                "analysis_notebook.ipynb"
                 "plot_growth_data.ipynb"
                 )
 
