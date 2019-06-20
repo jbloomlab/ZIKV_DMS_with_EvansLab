@@ -39,4 +39,6 @@ results/logoplots/*
 
 !results/figures
 
+!results/growth_data
+
 sra_submission/ZIKV_tar
