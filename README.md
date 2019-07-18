@@ -88,7 +88,12 @@ These data consist of:
    - [data/6co8.dssp](data/6co8.dssp)
    
    - [data/6co8_monomer.dssp](data/6co8_monomer.dssp)
-   
+
+ - Plasmid maps:
+
+   - [data/1725_ZIKV_MR766_int_WT.gb](data/1725_ZIKV_MR766_int_WT.gb): plasmid for wild-type ZIKV reverse genetics.
+
+   - [data/1726_ZIKV_MR766_int_GFP.gb](data/1726_ZIKV_MR766_int_GFP.gb): recipient plasmid for cloning mutant libraries.
 
 ## PyMol scripts
 The subdirectory [pymol_scripts](pymol_scripts) contains scripts for generating PyMol structure images.
