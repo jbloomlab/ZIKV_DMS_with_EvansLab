@@ -1,30 +1,30 @@
-2019-06-19 14:36:13,536 - INFO - Beginning execution of dms2_logoplot in directory /fh/fast/bloom_j/computational_notebooks/jbloom/2018/ZIKV_DMS_with_EvansLab
+2019-07-23 05:38:13,854 - INFO - Beginning execution of dms2_logoplot in directory /fh/fast/bloom_j/computational_notebooks/jbloom/2018/ZIKV_DMS_with_EvansLab
 
-2019-06-19 14:36:13,536 - INFO - Progress is being logged to ./results/figures/aafreqs.log
-2019-06-19 14:36:13,543 - INFO - Version information:
-	Time and date: Wed Jun 19 14:36:13 2019
+2019-07-23 05:38:13,854 - INFO - Progress is being logged to ./results/figures/aafreqs.log
+2019-07-23 05:38:13,860 - INFO - Version information:
+	Time and date: Tue Jul 23 05:38:13 2019
 	Platform: Linux-3.13.0-143-generic-x86_64-with-debian-jessie-sid
-	Python version: 3.6.7 | packaged by conda-forge | (default, Nov 21 2018, 02:32:25)  [GCC 4.8.2 20140120 (Red Hat 4.8.2-15)]
-	dms_tools2 version: 2.4.14
+	Python version: 3.6.7 | packaged by conda-forge | (default, Feb 28 2019, 09:07:38)  [GCC 7.3.0]
+	dms_tools2 version: 2.5.0
 	Bio version: 1.73
-	HTSeq version: 0.11.0
+	HTSeq version: 0.11.2
 	pandas version: 0.24.2
-	numpy version: 1.15.4
-	IPython version: 7.2.0
+	numpy version: 1.16.4
+	IPython version: 7.6.1
 	jupyter version: 1.0.0
-	matplotlib version: 3.0.3
+	matplotlib version: 3.1.1
 	plotnine version: 0.5.1
-	natsort version: 5.5.0
+	natsort version: 6.0.0
 	pystan version: 2.16.0.0
-	scipy version: 1.1.0
+	scipy version: 1.2.2
 	seaborn version: 0.9.0
 	phydmslib version: 2.3.2
-	statsmodels version: 0.9.0
-	rpy2 version: 2.9.1
-	regex version: 2.4.153
+	statsmodels version: 0.10.0
+	rpy2 version: 2.9.4
+	regex version: 2.5.33
 	umi_tools version: 1.0.0
 
-2019-06-19 14:36:13,543 - INFO - Parsed the following arguments:
+2019-07-23 05:38:13,860 - INFO - Parsed the following arguments:
 	outdir = ./results/figures
 	ncpus = -1
 	use_existing = no
@@ -55,20 +55,20 @@
 	ignore_extracols = no
 	sepline = yes
 
-2019-06-19 14:36:13,546 - INFO - Removing existing file ./results/figures/aafreqs_prefs.pdf
-2019-06-19 14:36:13,553 - INFO - Reading prefs from file ./results/figures/natural_aafreqs.csv...
-2019-06-19 14:36:13,563 - INFO - Read data for 504 sites.
+2019-07-23 05:38:13,862 - INFO - Removing existing file ./results/figures/aafreqs_prefs.pdf
+2019-07-23 05:38:13,864 - INFO - Reading prefs from file ./results/figures/natural_aafreqs.csv...
+2019-07-23 05:38:13,878 - INFO - Read data for 504 sites.
 
-2019-06-19 14:36:13,609 - INFO - Reading overlay for wildtype from ./results/logoplots/wt_overlay.csv...
-2019-06-19 14:36:13,617 - INFO - Read overlay for 504 sites.
+2019-07-23 05:38:13,921 - INFO - Reading overlay for wildtype from ./results/logoplots/wt_overlay.csv...
+2019-07-23 05:38:13,929 - INFO - Read overlay for 504 sites.
 
-2019-06-19 14:36:13,617 - INFO - Reading overlay for DOM from data/domains.csv...
-2019-06-19 14:36:13,625 - INFO - Read overlay for 504 sites.
+2019-07-23 05:38:13,929 - INFO - Reading overlay for DOM from data/domains.csv...
+2019-07-23 05:38:13,937 - INFO - Read overlay for 504 sites.
 
-2019-06-19 14:36:13,626 - INFO - Reading overlay for SS from ./results/logoplots/secondarystructure.csv...
-2019-06-19 14:36:13,635 - INFO - Read overlay for 501 sites.
+2019-07-23 05:38:13,937 - INFO - Reading overlay for SS from ./results/logoplots/secondarystructure.csv...
+2019-07-23 05:38:13,946 - INFO - Read overlay for 501 sites.
 
-2019-06-19 14:36:13,635 - INFO - Making logo plot ./results/figures/aafreqs_prefs.pdf...
-2019-06-19 14:36:18,290 - INFO - Successfully created logo plot.
+2019-07-23 05:38:13,946 - INFO - Making logo plot ./results/figures/aafreqs_prefs.pdf...
+2019-07-23 05:38:17,884 - INFO - Successfully created logo plot.
 
-2019-06-19 14:36:18,292 - INFO - Successful completion of dms2_logoplot
+2019-07-23 05:38:17,885 - INFO - Successful completion of dms2_logoplot
