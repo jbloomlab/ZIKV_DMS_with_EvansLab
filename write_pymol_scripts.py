@@ -1,5 +1,6 @@
 '''Script modified by Danny Lawrence 2019 to write pymol scripts that will color structure 5IRE of ZIKV E protein. '''
 
+import matplotlib.cm
 import pandas as pd 
 from colour import Color
 import os
@@ -46,16 +47,19 @@ def MapDiffSeltoPDB(infile,
         max_avg = df.max()['positive_diffsel']  # the min and max will be mapped to color1 and color2, respectively
         range_avg = max_avg - min_avg
         df['colorindex'] =  (df.positive_diffsel - min_avg)/range_avg*(n_subdivisions-1)
+
+        df['colorindex'] = df['colorindex'].astype(int) # round to nearest index
+        df['rgb'] = df['colorindex'].map(rgb_spectrum_dict)        
         
     elif map_type == 'entropy':
         assert 'entropy' in column_names
         min_val = df.min()['entropy']  
         max_val = df.max()['entropy']  # the min and max will be mapped to color1 and color2, respectively
         range_val = max_val - min_val
-        df['colorindex'] =  (df.entropy - min_val)/range_val*(n_subdivisions-1)
+        df['colorindex'] =  (df.entropy - min_val)/range_val
+        cmap = matplotlib.cm.get_cmap('viridis')
+        df['rgb'] = df['colorindex'].map(cmap)
     
-    df['colorindex'] = df['colorindex'].astype(int) # round to nearest index
-    df['rgb'] = df['colorindex'].map(rgb_spectrum_dict)        
     site_color_mapping = pd.concat([df['site'], df['rgb']], axis=1)
 
     # write out the script to *scriptfile*:
@@ -69,7 +73,7 @@ def MapDiffSeltoPDB(infile,
         preamblef.close()
     
     for i in range(len(df.index)):
-        rgblist = [min(1, c) for c in site_color_mapping.iloc[i]['rgb']]
+        rgblist = [min(1, c) for c in site_color_mapping.iloc[i]['rgb'][:3]]
         r = site_color_mapping.iloc[i]['site']
         
         f.write("cmd.set_color(\'color{0}\', \'{1}\')\n".format(r, rgblist))
@@ -106,7 +110,7 @@ for structure in structures:
                     script_postamble = postamble_file,
                     condition = "ZKA185") 
 
-    MapDiffSeltoPDB("./results/prefs/rescaled_prefs_entropy.csv", 
+    MapDiffSeltoPDB("./results/prefs/unscaled_prefs_entropy.csv", 
                     './pymol_scripts/{0}_MR766_entropy.py'.format(structure), 
                     map_type = 'entropy',
                     colors = ['#fafafa', '#007713'],
